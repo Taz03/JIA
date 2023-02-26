@@ -4,12 +4,14 @@ import io.github.taz.java.instagram.api.requests.IgRequest;
 import io.github.taz.java.instagram.api.response.IgResponse;
 
 import java.net.http.HttpClient;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandler;
 import java.util.concurrent.CompletableFuture;
 
 public final class IgClient {
     private final String username, password;
-    private HttpClient httpClient;
     private String encryptionId, encryptionKey, authorization;
+    private HttpClient httpClient;
 
     public IgClient(String username, String password) {
         this.username = username;
@@ -17,6 +19,7 @@ public final class IgClient {
         // login after this
     }
 
-    public <T extends IgResponse> CompletableFuture<T> sendRequest(IgRequest<T> request) {
+    public <T extends IgResponse> CompletableFuture<HttpResponse<T>> sendRequest(IgRequest<T> request, BodyHandler<T> handler) {
+        return httpClient.sendAsync(request.formRequest(), handler);
     }
 }

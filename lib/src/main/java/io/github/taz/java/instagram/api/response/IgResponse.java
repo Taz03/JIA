@@ -3,21 +3,23 @@ package io.github.taz.java.instagram.api.response;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record IgResponse(
-    String status,
-    String message,
+public class IgResponse {
+    @JsonProperty("status")
+    private String status;
+    @JsonProperty("message")
+    private String message;
     @JsonIgnore
-    int statusCode,
+    private int statusCode;
     @JsonProperty("spam")
-    boolean isSpam,
+    private boolean isSpam;
     @JsonProperty("lock")
-    boolean isLocked,
+    private boolean isLocked;
     @JsonProperty("feedback_title")
-    String feedbackTitle,
+    private String feedbackTitle;
     @JsonProperty("feedback_message")
-    String feedbackMessage,
+    private String feedbackMessage;
     @JsonProperty("error_type")
-    String errorType,
+    private String errorType;
     @JsonProperty("checkpoint_url")
-    String checkpointUrl
-) {}
+    private String checkpointUrl;
+}
