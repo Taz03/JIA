@@ -4,13 +4,12 @@ import java.net.http.HttpRequest;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.taz.java.instagram.api.response.IgResponse;
+import io.github.taz.java.instagram.api.IgClient;
+import io.github.taz.java.instagram.api.responses.IgResponse;
+import io.github.taz.java.instagram.api.utils.JsonUtils;
 
 public abstract class IgRequest<T extends IgResponse> {
-    private final static ObjectMapper MAPPER = new ObjectMapper();
-
     private final Class<T> responseType;
     private String url = "https://i.instagram.com/api/v1/";
 
@@ -35,9 +34,18 @@ public abstract class IgRequest<T extends IgResponse> {
         return responseType;
     }
 
-    public abstract HttpRequest formRequest();
+    public abstract HttpRequest formRequest(IgClient client);
 
     public T parseResponse(String json) throws JsonProcessingException {
-        return MAPPER.readValue(json, responseType);
+        return JsonUtils.jsonToObject(json, responseType);
+    }
+
+    protected static String[] getHeaders(IgClient client) {
+        return new String[]{
+            "Content-Type", "application/x-www-form-urlencoded; charset=UTF-8",
+            "User-Agent", "Instagram 265.0.0.19.301 Android (33/13; 374dpi; 1080x2224; Google/google; sdk_gphone64_x86_64; emu64x; ranchu; en_US; 436384448)",
+            "Authorization", client.getAuthorization(),
+            "Cookie", client.getCookies()
+        };
     }
 }

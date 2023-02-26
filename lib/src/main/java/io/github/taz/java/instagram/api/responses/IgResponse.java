@@ -1,4 +1,4 @@
-package io.github.taz.java.instagram.api.response;
+package io.github.taz.java.instagram.api.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
