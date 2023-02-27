@@ -1,5 +1,6 @@
 package io.github.taz.java.instagram.api.requests;
 
+import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class IgGetRequest<T extends IgResponse> extends IgRequest<T> {
 
 	@Override
 	public HttpRequest formRequest(IgClient client) {
-        return HttpRequest.newBuilder(this.getUri())
+        return HttpRequest.newBuilder(URI.create(this.getUrl()))
             .headers(IgRequest.getHeaders(client))
             .GET()
             .build();

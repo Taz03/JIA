@@ -35,10 +35,6 @@ public abstract class IgRequest<T extends IgResponse> {
         return responseType;
     }
 
-    public URI getUri() {
-        return URI.create(url);
-    }
-
     public abstract HttpRequest formRequest(IgClient client);
 
     public T parseResponse(String json) throws JsonProcessingException {
@@ -46,7 +42,7 @@ public abstract class IgRequest<T extends IgResponse> {
     }
 
     protected static String[] getHeaders(IgClient client) {
-        return new String[]{
+        return new String[] {
             "Content-Type", "application/x-www-form-urlencoded; charset=UTF-8",
             "User-Agent", "Instagram 265.0.0.19.301 Android (33/13; 374dpi; 1080x2224; Google/google; sdk_gphone64_x86_64; emu64x; ranchu; en_US; 436384448)",
             "Authorization", client.getAuthorization(),

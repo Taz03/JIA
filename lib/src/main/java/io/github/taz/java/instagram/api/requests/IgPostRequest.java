@@ -4,6 +4,7 @@ import io.github.taz.java.instagram.api.IgClient;
 import io.github.taz.java.instagram.api.responses.IgResponse;
 import io.github.taz.java.instagram.api.utils.UrlUtils;
 
+import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.util.Map;
@@ -26,7 +27,7 @@ public abstract class IgPostRequest<T extends IgResponse> extends IgRequest<T> {
 
     @Override
     public HttpRequest formRequest(IgClient client) {
-        return HttpRequest.newBuilder(this.getUri())
+        return HttpRequest.newBuilder(URI.create(this.getUrl()))
             .headers(IgRequest.getHeaders(client))
             .POST(BodyPublishers.ofString(body))
             .build();

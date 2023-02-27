@@ -1,12 +1,13 @@
 package io.github.taz.java.instagram.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import io.github.taz.java.instagram.api.requests.IgRequest;
 import io.github.taz.java.instagram.api.responses.IgResponse;
 
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
-import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
 import java.util.concurrent.CompletableFuture;
 
 public final class IgClient {
@@ -44,10 +45,11 @@ public final class IgClient {
     }
 
     public <T extends IgResponse> CompletableFuture<T> sendRequest(IgRequest<T> request) {
-        return httpClient.sendAsync(request.formRequest(this), HttpResponse.BodyHandlers.ofString())
-                .thenApply(json -> {
+        return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
+                .thenApply(response -> {
+                    setFromResponseHeaders(response.headers());
                     try {
-                        return request.parseResponse(json.body());
+                        return request.parseResponse(response.body());
                     } catch (JsonProcessingException e) {
                         //TODO log or something
                         throw new RuntimeException(e);
@@ -55,14 +57,14 @@ public final class IgClient {
                 });
     }
 
-    public <T> void setFromResponseHeaders(HttpResponse<T> res) {
-        HttpHeaders headers = res.headers();
-
+    public void setFromResponseHeaders(HttpHeaders headers) {
         headers.firstValue("ig-set-password-encryption-key-id")
                 .ifPresent(value -> this.encryptionId = value);
         headers.firstValue("ig-set-password-encryption-pub-key")
                 .ifPresent(value -> this.encryptionKey = value);
         headers.firstValue("ig-set-authorization")
                 .ifPresent(value -> this.authorization = value);
+        headers.allValues("set-cookie")
+                .forEach(cookie -> this.cookies += cookie);
     }
 }
