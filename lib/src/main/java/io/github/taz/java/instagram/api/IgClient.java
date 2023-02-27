@@ -3,15 +3,10 @@ package io.github.taz.java.instagram.api;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.taz.java.instagram.api.requests.IgRequest;
 import io.github.taz.java.instagram.api.responses.IgResponse;
-import io.github.taz.java.instagram.api.utils.JsonUtils;
 
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
-import java.nio.ByteBuffer;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.Flow;
 
 public final class IgClient {
     private final String username, password;
