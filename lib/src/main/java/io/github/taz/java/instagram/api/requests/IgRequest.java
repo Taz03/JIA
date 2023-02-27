@@ -1,5 +1,6 @@
 package io.github.taz.java.instagram.api.requests;
 
+import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.taz.java.instagram.api.IgClient;
 import io.github.taz.java.instagram.api.responses.IgResponse;
 import io.github.taz.java.instagram.api.utils.JsonUtils;
+import io.github.taz.java.instagram.api.utils.UrlUtils;
 
 public abstract class IgRequest<T extends IgResponse> {
     private final Class<T> responseType;
@@ -21,9 +23,8 @@ public abstract class IgRequest<T extends IgResponse> {
         this.responseType = responseType;
         this.url += path;
 
-        if (queries == null || queries.size() <= 0) return;
-        url += "?";
-        queries.forEach((key, value) -> url += key + "=" + value + "&");
+        if (queries != null && queries.size() > 0)
+            url += "?" + UrlUtils.makeBody(queries);
     }
 
     public String getUrl() {
@@ -32,6 +33,10 @@ public abstract class IgRequest<T extends IgResponse> {
 
     public Class<T> getResponseType() {
         return responseType;
+    }
+
+    public URI getUri() {
+        return URI.create(url);
     }
 
     public abstract HttpRequest formRequest(IgClient client);

@@ -16,7 +16,6 @@ public final class IgClient {
     public IgClient(String username, String password) {
         this.username = username;
         this.password = password;
-        // login after this
     }
 
     public String getUsername() {
