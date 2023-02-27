@@ -64,6 +64,7 @@ public final class IgClient {
                 .ifPresent(value -> this.encryptionKey = value);
         headers.firstValue("ig-set-authorization")
                 .ifPresent(value -> this.authorization = value);
+        this.cookies = "";
         headers.allValues("set-cookie")
                 .forEach(cookie -> this.cookies += cookie);
     }
