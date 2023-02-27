@@ -1,12 +1,17 @@
 package io.github.taz.java.instagram.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.taz.java.instagram.api.requests.IgRequest;
 import io.github.taz.java.instagram.api.responses.IgResponse;
+import io.github.taz.java.instagram.api.utils.JsonUtils;
 
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandler;
+import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+import java.util.concurrent.Flow;
 
 public final class IgClient {
     private final String username, password;
@@ -42,7 +47,15 @@ public final class IgClient {
         return cookies;
     }
 
-    public <T extends IgResponse> CompletableFuture<HttpResponse<T>> sendRequest(IgRequest<T> request, BodyHandler<T> handler) {
-        return httpClient.sendAsync(request.formRequest(this), handler);
+    public <T extends IgResponse> CompletableFuture<T> sendRequest(IgRequest<T> request) {
+        return httpClient.sendAsync(request.formRequest(this), HttpResponse.BodyHandlers.ofString())
+                .thenApply(json -> {
+                    try {
+                        return request.parseResponse(json.body());
+                    } catch (JsonProcessingException e) {
+                        //TODO log or something
+                        throw new RuntimeException(e);
+                    }
+                });
     }
 }
