@@ -12,7 +12,7 @@ import io.github.taz.java.instagram.api.utils.UrlUtils;
 
 public abstract class IgRequest<T extends IgResponse> {
     private final Class<T> responseType;
-    private String url = "https://i.instagram.com/api/v1/";
+    private String url = "https://i.instagram.com/api/v1";
 
     public IgRequest(Class<T> responseType, String path) {
         this(responseType, path, null);
@@ -44,8 +44,8 @@ public abstract class IgRequest<T extends IgResponse> {
         return new String[] {
             "Content-Type", "application/x-www-form-urlencoded; charset=UTF-8",
             "User-Agent", "Instagram 265.0.0.19.301 Android (33/13; 374dpi; 1080x2224; Google/google; sdk_gphone64_x86_64; emu64x; ranchu; en_US; 436384448)",
-            "Authorization", client.getAuthorization(),
-            "Cookie", client.getCookies()
+            "Authorization", client.getAuthorization() == null ? "" : client.getAuthorization(),
+            "Cookie", client.getCookies() == null ? "" : client.getCookies()
         };
     }
 }

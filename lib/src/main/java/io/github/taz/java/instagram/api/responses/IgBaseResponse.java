@@ -19,4 +19,4 @@ public record IgBaseResponse(
     String errorType,
     @JsonProperty("checkpoint_url")
     String checkpointUrl
-) {}
+) implements IgResponse {}
