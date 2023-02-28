@@ -3,6 +3,7 @@ package io.github.taz.java.instagram.api;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import io.github.taz.java.instagram.api.requests.IgRequest;
+import io.github.taz.java.instagram.api.requests.accounts.AccountsLoginRequest;
 import io.github.taz.java.instagram.api.responses.IgResponse;
 
 import java.net.http.HttpClient;
@@ -44,6 +45,10 @@ public final class IgClient {
         return cookies;
     }
 
+    public void login() throws Exception {
+        sendRequest(new AccountsLoginRequest(username, password)).join();
+    }
+
     public <T extends IgResponse> CompletableFuture<T> sendRequest(IgRequest<T> request) {
         return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
                 .thenApply(response -> {
@@ -51,7 +56,6 @@ public final class IgClient {
                     try {
                         return request.parseResponse(response.body());
                     } catch (JsonProcessingException e) {
-                        //TODO log or something
                         throw new RuntimeException(e);
                     }
                 });

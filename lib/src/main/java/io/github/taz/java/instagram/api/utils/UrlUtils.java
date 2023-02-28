@@ -10,10 +10,10 @@ public final class UrlUtils {
         throw new UnsupportedOperationException("Utility class, construction not supported");
     }
 
-    public static String makeBody(Map<String, String> parameters) {
+    public static String makeBody(Map<String, Object> parameters) {
         return parameters.entrySet()
             .stream()
-            .map(entry -> entry.getKey() + "=" + URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
+            .map(entry -> entry.getKey() + "=" + URLEncoder.encode(entry.getValue().toString(), StandardCharsets.UTF_8))
             .collect(Collectors.joining("&"));
     }
 }

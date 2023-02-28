@@ -12,7 +12,7 @@ public class IgGetRequest<T extends IgResponse> extends IgRequest<T> {
 		super(responseType, path, null);
 	}
 
-	public IgGetRequest(Class<T> responseType, String path, Map<String, String> queries) {
+	public IgGetRequest(Class<T> responseType, String path, Map<String, Object> queries) {
 		super(responseType, path, queries);
 	}
 

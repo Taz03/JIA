@@ -1,6 +1,5 @@
 package io.github.taz.java.instagram.api.requests;
 
-import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.Map;
 
@@ -19,7 +18,7 @@ public abstract class IgRequest<T extends IgResponse> {
         this(responseType, path, null);
     }
     
-    public IgRequest(Class<T> responseType, String path, Map<String, String> queries) {
+    public IgRequest(Class<T> responseType, String path, Map<String, Object> queries) {
         this.responseType = responseType;
         this.url += path;
 

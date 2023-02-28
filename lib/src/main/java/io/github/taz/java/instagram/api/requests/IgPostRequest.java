@@ -16,11 +16,11 @@ public abstract class IgPostRequest<T extends IgResponse> extends IgRequest<T> {
 		super(responseType, path, null);
 	}
 
-	public IgPostRequest(Class<T> responseType, String path, Map<String, String> queries) {
+	public IgPostRequest(Class<T> responseType, String path, Map<String, Object> queries) {
 		super(responseType, path, queries);
 	}
 
-	public IgPostRequest(Class<T> responseType, String path, Map<String, String> queries, Map<String, String> parameters) {
+	public IgPostRequest(Class<T> responseType, String path, Map<String, Object> queries, Map<String, Object> parameters) {
 		super(responseType, path, queries);
         this.body = UrlUtils.makeBody(parameters);
 	}
