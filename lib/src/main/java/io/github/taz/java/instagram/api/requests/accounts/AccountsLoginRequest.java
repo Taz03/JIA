@@ -10,6 +10,7 @@ public class AccountsLoginRequest extends IgPostRequest<AccountsLoginResponse> {
 		super(AccountsLoginResponse.class, "/accounts/login/", null, Map.of(
             "username", username,
             "enc_password", encryptedPassword,
+            "device_id", "android-a25a335851cf770b",
             "login_attempt_account", 0
         ));
 	}

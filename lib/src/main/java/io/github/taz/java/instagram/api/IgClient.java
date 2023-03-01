@@ -29,7 +29,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public final class IgClient {
     private final String username, password;
-    private String encryptionId, encryptionKey, authorization, cookies;
+    private String authorization, cookies;
     private HttpClient httpClient = HttpClient.newHttpClient();
 
     public IgClient(String username, String password) {
@@ -45,14 +45,6 @@ public final class IgClient {
         return password;
     }
 
-    public String getEncryptionId() {
-        return encryptionId;
-    }
-
-    public String getEncryptionKey() {
-        return encryptionKey;
-    }
-
     public String getAuthorization() {
         return authorization;
     }
@@ -63,10 +55,19 @@ public final class IgClient {
 
     public void login() throws Exception {
         httpClient.sendAsync(new QeSyncRequest().formRequest(this), BodyHandlers.discarding())
-            .thenAccept(response -> setFromResponseHeaders(response.headers()))
+            .thenAccept(response -> {
+                HttpHeaders headers = response.headers();
+                String encryptionId = headers.firstValue("ig-set-password-encryption-key-id").get();
+                String encryptionKey = headers.firstValue("ig-set-password-encryption-pub-key").get();
+
+                try {
+                    String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
+                    sendRequest(new AccountsLoginRequest(username, encryptedPassword)).join();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            })
             .join();
-        Thread.sleep(500L);
-        sendRequest(new AccountsLoginRequest(username, encryptPassword(password, encryptionId, encryptionKey))).join();
     }
 
     public <T extends IgResponse> CompletableFuture<T> sendRequest(IgRequest<T> request) {
@@ -82,15 +83,10 @@ public final class IgClient {
     }
 
     public void setFromResponseHeaders(HttpHeaders headers) {
-        headers.firstValue("ig-set-password-encryption-key-id")
-                .ifPresent(value -> this.encryptionId = value);
-        headers.firstValue("ig-set-password-encryption-pub-key")
-                .ifPresent(value -> this.encryptionKey = value);
-        headers.firstValue("ig-set-authorization")
-                .ifPresent(value -> this.authorization = value);
+        headers.firstValue("ig-set-authorization").ifPresent(value -> this.authorization = value);
+
         this.cookies = "";
-        headers.allValues("set-cookie")
-                .forEach(cookie -> this.cookies += cookie);
+        headers.allValues("set-cookie").forEach(cookie -> this.cookies += cookie);
     }
 
     public static String encryptPassword(String password, String encryptionId, String encryptionKey) throws Exception {
