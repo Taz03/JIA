@@ -5,13 +5,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.taz.java.instagram.api.requests.IgRequest;
 import io.github.taz.java.instagram.api.requests.accounts.AccountsLoginRequest;
 import io.github.taz.java.instagram.api.requests.qe.QeSyncRequest;
-import io.github.taz.java.instagram.api.responses.IgBaseResponse;
 import io.github.taz.java.instagram.api.responses.IgResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
-import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -53,7 +51,7 @@ public final class IgClient {
         return cookies;
     }
 
-    public void login() throws Exception {
+    public void login() {
         httpClient.sendAsync(new QeSyncRequest().formRequest(this), BodyHandlers.discarding())
             .thenAccept(response -> {
                 HttpHeaders headers = response.headers();
