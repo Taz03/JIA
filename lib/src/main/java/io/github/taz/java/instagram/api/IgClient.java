@@ -62,11 +62,9 @@ public final class IgClient {
     }
 
     public void login() throws Exception {
-        QeSyncRequest qeRequest = new QeSyncRequest();
-        HttpResponse<String> qe = httpClient.send(qeRequest.formRequest(this), BodyHandlers.ofString());
-        System.out.println(qe.statusCode());
-        setFromResponseHeaders(qe.headers());
-        System.out.println(this.encryptionId + " " + this.encryptionKey);
+        httpClient.sendAsync(new QeSyncRequest().formRequest(this), BodyHandlers.discarding())
+            .thenAccept(response -> setFromResponseHeaders(response.headers()))
+            .join();
         Thread.sleep(500L);
         sendRequest(new AccountsLoginRequest(username, encryptPassword(password, encryptionId, encryptionKey))).join();
     }
