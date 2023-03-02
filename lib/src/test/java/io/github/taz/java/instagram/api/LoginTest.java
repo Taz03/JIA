@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 public class LoginTest {
     @Test
     public void loginTest() throws Exception {
-        IgClient client = new IgClient("tanish_test", "tanish03");
+        IgClient client = new IgClient("", "");
         client.login();
 
-        assertNotEquals("", client.getCookies());
+        assertNotEquals("", client.getAuthorization());
     }
 }

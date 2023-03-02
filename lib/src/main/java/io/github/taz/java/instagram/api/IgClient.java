@@ -70,21 +70,19 @@ public final class IgClient {
 
     public <T extends IgResponse> CompletableFuture<T> sendRequest(IgRequest<T> request) {
         return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
-                .thenApply(response -> {
-                    setFromResponseHeaders(response.headers());
-                    try {
-                        return request.parseResponse(response.body());
-                    } catch (JsonProcessingException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+            .thenApply(response -> {
+                setFromResponseHeaders(response.headers());
+                try {
+                    return request.parseResponse(response.body());
+                } catch (JsonProcessingException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        );
     }
 
-    public void setFromResponseHeaders(HttpHeaders headers) {
+    private void setFromResponseHeaders(HttpHeaders headers) {
         headers.firstValue("ig-set-authorization").ifPresent(value -> this.authorization = value);
-
-        this.cookies = "";
-        headers.allValues("set-cookie").forEach(cookie -> this.cookies += cookie);
     }
 
     public static String encryptPassword(String password, String encryptionId, String encryptionKey) throws Exception {

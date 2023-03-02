@@ -1,22 +1,55 @@
 package io.github.taz.java.instagram.api.responses;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record IgBaseResponse(
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class IgBaseResponse implements IgResponse {
     @JsonProperty("status")
-    String status,
+    private String status;
     @JsonProperty("message")
-    String message,
+    private String message;
     @JsonProperty("spam")
-    boolean isSpam,
+    private boolean isSpam;
     @JsonProperty("lock")
-    boolean isLocked,
+    private boolean isLocked;
     @JsonProperty("feedback_title")
-    String feedbackTitle,
+    private String feedbackTitle;
     @JsonProperty("feedback_message")
-    String feedbackMessage,
+    private String feedbackMessage;
     @JsonProperty("error_type")
-    String errorType,
+    private String errorType;
     @JsonProperty("checkpoint_url")
-    String checkpointUrl
-) implements IgResponse {}
+    private String checkpointUrl;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+    public boolean isSpam() {
+        return isSpam;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public String getFeedbackTitle() {
+        return feedbackTitle;
+    }
+
+    public String getFeedbackMessage() {
+        return feedbackMessage;
+    }
+
+    public String getErrorType() {
+        return errorType;
+    }
+
+    public String getCheckpointUrl() {
+        return checkpointUrl;
+    }
+}

@@ -1,22 +1,56 @@
 package io.github.taz.java.instagram.api.models.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record Profile(
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Profile {
     @JsonProperty("username")
-    String username,
+    private String username;
     @JsonProperty("full_name")
-    String fullName,
+    private String fullName;
     @JsonProperty("is_private")
-    boolean isPrivate,
+    private boolean isPrivate;
     @JsonProperty("profile_pid_url")
-    String profileUrl,
+    private String profileUrl;
     @JsonProperty("profile_pic_id")
-    String profileId,
+    private String profileId;
     @JsonProperty("is_verified")
-    boolean isVerified,
+    private boolean isVerified;
     @JsonProperty("has_anonymous_profile_picture")
-    boolean hasAnonymousProfile,
+    private boolean hasAnonymousProfile;
     @JsonProperty("pk")
-    long pk
-) {}
+    private long pk;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+    
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+
+    public String getProfileId() {
+        return profileId;
+    }
+
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public boolean hasAnonymousProfile() {
+        return hasAnonymousProfile;
+    }
+
+    public long getPk() {
+        return pk;
+    }
+}

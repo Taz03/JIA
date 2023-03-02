@@ -1,12 +1,26 @@
 package io.github.taz.java.instagram.api.models.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record ProfilePicture(
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ProfilePicture {
     @JsonProperty("url")
-    String url,
+    private String url;
     @JsonProperty("width")
-    int width,
+    private int width;
     @JsonProperty("height")
-    int height
-) {}
+    private int height;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+}
