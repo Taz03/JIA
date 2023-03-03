@@ -1,8 +1,11 @@
 package io.github.taz.java.instagram.api;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
+import io.github.taz.java.instagram.api.requests.accounts.AccountsSetBiographyRequest;
+import io.github.taz.java.instagram.api.responses.IgBaseResponse;
 
 public class LoginTest {
     @Test
@@ -10,6 +13,8 @@ public class LoginTest {
         IgClient client = new IgClient("", "");
         client.login();
 
-        assertNotEquals("", client.getAuthorization());
+        IgBaseResponse setBioResponse = client.sendRequest(new AccountsSetBiographyRequest("my instagram library")).join();
+
+        assertEquals("ok", setBioResponse.getStatus());
     }
 }
