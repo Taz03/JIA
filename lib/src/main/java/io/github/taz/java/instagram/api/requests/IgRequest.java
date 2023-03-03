@@ -4,6 +4,7 @@ import java.net.http.HttpRequest;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.taz.java.instagram.api.IgClient;
 import io.github.taz.java.instagram.api.responses.IgResponse;
@@ -11,6 +12,8 @@ import io.github.taz.java.instagram.api.utils.JsonUtils;
 import io.github.taz.java.instagram.api.utils.UrlUtils;
 
 public abstract class IgRequest<T extends IgResponse> {
+    private static final ObjectMapper mapper = new ObjectMapper();
+
     private final Class<T> responseType;
     private String url = "https://i.instagram.com/api/v1";
 
@@ -37,7 +40,7 @@ public abstract class IgRequest<T extends IgResponse> {
     public abstract HttpRequest formRequest(IgClient client);
 
     public T parseResponse(String json) throws JsonProcessingException {
-        return JsonUtils.jsonToObject(json, responseType);
+        return mapper.readValue(json, responseType);
     }
 
     protected static String[] getHeaders(IgClient client) {
