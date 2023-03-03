@@ -75,8 +75,10 @@ public final class IgClient {
     }
 
     public <T extends IgResponse> CompletableFuture<T> sendRequest(IgRequest<T> request) {
+        logger.info("Sending request asynchromously to {}", request.getUrl());
         return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
                 .thenApply(response -> {
+                            logger.info("Response received from {}", response.uri());
                             setFromResponseHeaders(response.headers());
                             try {
                                 return request.parseResponse(response.body());
