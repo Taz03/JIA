@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.taz.java.instagram.api.IgClient;
 import io.github.taz.java.instagram.api.responses.IgResponse;
-import io.github.taz.java.instagram.api.utils.JsonUtils;
 import io.github.taz.java.instagram.api.utils.UrlUtils;
 
 public abstract class IgRequest<T extends IgResponse> {
