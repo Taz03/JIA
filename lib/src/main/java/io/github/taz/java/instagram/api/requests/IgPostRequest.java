@@ -4,9 +4,6 @@ import io.github.taz.java.instagram.api.IgClient;
 import io.github.taz.java.instagram.api.responses.IgResponse;
 import io.github.taz.java.instagram.api.utils.UrlUtils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
@@ -14,6 +11,7 @@ import java.util.Map;
 
 public abstract class IgPostRequest<T extends IgResponse> extends IgRequest<T> {
     private String body = "";
+
 	public IgPostRequest(Class<T> responseType, String path) {
 		super(responseType, path, null);
 	}

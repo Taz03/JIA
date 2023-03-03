@@ -6,8 +6,6 @@ import java.util.Map;
 
 import io.github.taz.java.instagram.api.IgClient;
 import io.github.taz.java.instagram.api.responses.IgResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class IgGetRequest<T extends IgResponse> extends IgRequest<T> {
 	public IgGetRequest(Class<T> responseType, String path) {
