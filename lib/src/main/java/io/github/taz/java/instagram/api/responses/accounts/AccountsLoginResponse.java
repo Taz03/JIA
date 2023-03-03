@@ -14,4 +14,12 @@ public class AccountsLoginResponse implements IgResponse {
     private IgBaseResponse baseResponse;
     @JsonProperty("logged_in_user")
     private User user;
+
+    public IgBaseResponse getBaseResponse() {
+        return baseResponse;
+    }
+
+    public User getUser() {
+        return user;
+    }
 }
