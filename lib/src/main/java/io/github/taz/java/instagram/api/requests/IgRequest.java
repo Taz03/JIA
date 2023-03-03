@@ -45,7 +45,6 @@ public abstract class IgRequest<T extends IgResponse> {
             "Content-Type", "application/x-www-form-urlencoded; charset=UTF-8",
             "User-Agent", "Instagram 265.0.0.19.301 Android (33/13; 374dpi; 1080x2224; Google/google; sdk_gphone64_x86_64; emu64x; ranchu; en_US; 436384448)",
             "Authorization", client.getAuthorization() == null ? "" : client.getAuthorization(),
-            "Cookie", client.getCookies() == null ? "" : client.getCookies()
         };
     }
 }
