@@ -11,6 +11,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
 
+    testImplementation 'org.slf4j:slf4j-simple:2.0.6'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
 }
 
