@@ -1,4 +1,4 @@
-package io.github.taz.java.instagram.api.utils;
+package io.github.taz.jia.utils;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
