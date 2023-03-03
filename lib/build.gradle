@@ -10,7 +10,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
-
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.6'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
 }
 
