@@ -7,6 +7,9 @@ import io.github.taz.java.instagram.api.requests.accounts.AccountsLoginRequest;
 import io.github.taz.java.instagram.api.requests.qe.QeSyncRequest;
 import io.github.taz.java.instagram.api.responses.IgResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.ByteArrayOutputStream;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
@@ -27,17 +30,13 @@ import javax.crypto.spec.SecretKeySpec;
 
 public final class IgClient {
     private final String username, password;
-    private String authorization;
+    private String authorization, cookies;
     private HttpClient httpClient = HttpClient.newHttpClient();
+    private static final Logger logger = LoggerFactory.getLogger(IgClient.class);
 
     public IgClient(String username, String password) {
-        this(username, password, null);
-    }
-
-    public IgClient(String username, String password, String authorization) {
         this.username = username;
         this.password = password;
-        this.authorization = authorization;
     }
 
     public String getUsername() {
@@ -52,40 +51,44 @@ public final class IgClient {
         return authorization;
     }
 
-    public void setAuthorization(String authorization) {
-        this.authorization = authorization;
+    public String getCookies() {
+        return cookies;
     }
 
     public void login() {
-        if (authorization != null) return;
-
         httpClient.sendAsync(new QeSyncRequest().formRequest(this), BodyHandlers.discarding())
-            .thenAccept(response -> {
-                HttpHeaders headers = response.headers();
-                String encryptionId = headers.firstValue("ig-set-password-encryption-key-id").get();
-                String encryptionKey = headers.firstValue("ig-set-password-encryption-pub-key").get();
+                .thenAccept(response -> {
+                    logger.info("Response received from {}", response.uri());
+                    HttpHeaders headers = response.headers();
+                    String encryptionId = headers.firstValue("ig-set-password-encryption-key-id").get();
+                    String encryptionKey = headers.firstValue("ig-set-password-encryption-pub-key").get();
 
-                try {
-                    String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
-                    sendRequest(new AccountsLoginRequest(username, encryptedPassword)).join();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            })
-            .join();
+                    try {
+                        String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
+                        sendRequest(new AccountsLoginRequest(username, encryptedPassword)).join();
+                    } catch (Exception e) {
+                        logger.error("Error occurred while encrypting password or sending request", e);
+                    }
+                })
+                .join();
     }
 
     public <T extends IgResponse> CompletableFuture<T> sendRequest(IgRequest<T> request) {
         return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
-            .thenApply(response -> {
-                response.headers().firstValue("ig-set-authorization").ifPresent(this::setAuthorization);
-                try {
-                    return request.parseResponse(response.body());
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        );
+                .thenApply(response -> {
+                            setFromResponseHeaders(response.headers());
+                            try {
+                                return request.parseResponse(response.body());
+                            } catch (JsonProcessingException e) {
+                                logger.error("Error while trying to process json: {}", response.body(), e);
+                                throw new RuntimeException(e);
+                            }
+                        }
+                );
+    }
+
+    private void setFromResponseHeaders(HttpHeaders headers) {
+        headers.firstValue("ig-set-authorization").ifPresent(value -> this.authorization = value);
     }
 
     public static String encryptPassword(String password, String encryptionId, String encryptionKey) throws Exception {
@@ -103,7 +106,7 @@ public final class IgClient {
 
         // Decode and sanitize the public key
         String decodedPublicKey = new String(Base64.getDecoder().decode(encryptionKey), StandardCharsets.UTF_8)
-                        .replaceAll("-(.*)-|\n", "");
+                .replaceAll("-(.*)-|\n", "");
 
         // Encrypt random key with RSA
         Cipher rsaCipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
