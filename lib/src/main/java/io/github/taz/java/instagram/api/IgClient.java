@@ -118,13 +118,13 @@ public final class IgClient {
 
         // Write all data to final byte array
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        out.write(Integer.valueOf(1).byteValue());
-        out.write(Integer.valueOf(encryptionId).byteValue());
+        out.write(1);
+        out.write(Integer.parseInt(encryptionId));
         out.write(iv);
         out.write(ByteBuffer.allocate(2).order(ByteOrder.LITTLE_ENDIAN).putChar((char) randKeyEncrypted.length).array());
         out.write(randKeyEncrypted);
-        out.write(Arrays.copyOfRange(encryptedPassword, encryptedPassword.length - gcmTagSize, encryptedPassword.length));
-        out.write(Arrays.copyOfRange(encryptedPassword, 0, encryptedPassword.length - gcmTagSize));
+        out.write(encryptedPassword, encryptedPassword.length - gcmTagSize, encryptedPassword.length);
+        out.write(encryptedPassword, 0, encryptedPassword.length - gcmTagSize);
 
         // Return final string formatted as "#PWD_INSTAGRAM:%s:%s:%s", with version, timestamp and encrypted data
         return String.format("#PWD_INSTAGRAM:%s:%s:%s", versionNumber, time, Base64.getEncoder().encodeToString(out.toByteArray()));
