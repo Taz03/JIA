@@ -14,7 +14,6 @@ import java.util.Map;
 
 public abstract class IgPostRequest<T extends IgResponse> extends IgRequest<T> {
     private String body = "";
-	public static final Logger logger = LoggerFactory.getLogger(IgPostRequest.class);
 	public IgPostRequest(Class<T> responseType, String path) {
 		super(responseType, path, null);
 	}
@@ -30,7 +29,6 @@ public abstract class IgPostRequest<T extends IgResponse> extends IgRequest<T> {
 
     @Override
     public HttpRequest formRequest(IgClient client) {
-		logger.info("Making POST request for {}", this.getUrl());
         return HttpRequest.newBuilder(URI.create(this.getUrl()))
             .headers(IgRequest.getHeaders(client))
             .POST(BodyPublishers.ofString(body))
