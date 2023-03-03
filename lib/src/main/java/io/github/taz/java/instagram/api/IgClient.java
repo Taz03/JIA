@@ -29,10 +29,11 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public final class IgClient {
+    private static final Logger logger = LoggerFactory.getLogger(IgClient.class);
+
     private final String username, password;
     private String authorization, cookies;
     private HttpClient httpClient = HttpClient.newHttpClient();
-    private static final Logger logger = LoggerFactory.getLogger(IgClient.class);
 
     public IgClient(String username, String password) {
         this.username = username;
@@ -67,7 +68,7 @@ public final class IgClient {
                         String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
                         sendRequest(new AccountsLoginRequest(username, encryptedPassword)).join();
                     } catch (Exception e) {
-                        logger.error("Error occurred while encrypting password or sending request", e);
+                        logger.error("Tried to encrypt password that is invalid, encryptionId: {}. encryptionKey: {}", encryptionId, encryptionKey, e);
                     }
                 })
                 .join();
@@ -80,7 +81,7 @@ public final class IgClient {
                             try {
                                 return request.parseResponse(response.body());
                             } catch (JsonProcessingException e) {
-                                logger.error("Error while trying to process json: {}", response.body(), e);
+                                logger.error("Error while trying to deserialize json: {} to class: {}", response.body(), request.getResponseType(), e);
                                 throw new RuntimeException(e);
                             }
                         }

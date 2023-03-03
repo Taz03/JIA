@@ -21,7 +21,7 @@ public class IgGetRequest<T extends IgResponse> extends IgRequest<T> {
 
 	@Override
 	public HttpRequest formRequest(IgClient client) {
-		logger.info("Sending POST request to {}", this.getUrl());
+		logger.info("Making GET request for {}", this.getUrl());
         return HttpRequest.newBuilder(URI.create(this.getUrl()))
             .headers(IgRequest.getHeaders(client))
             .GET()
