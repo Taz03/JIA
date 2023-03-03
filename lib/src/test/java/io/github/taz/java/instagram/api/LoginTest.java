@@ -10,10 +10,9 @@ import io.github.taz.java.instagram.api.responses.IgBaseResponse;
 public class LoginTest {
     @Test
     public void loginTest() throws Exception {
-        IgClient client = new IgClient("", "");
-        client.login();
+        IgClient client = new IgClient("", "", "");
 
-        IgBaseResponse setBioResponse = client.sendRequest(new AccountsSetBiographyRequest("my instagram library")).join();
+        IgBaseResponse setBioResponse = client.sendRequest(new AccountsSetBiographyRequest("my instagram library jia")).join();
 
         assertEquals("ok", setBioResponse.getStatus());
     }

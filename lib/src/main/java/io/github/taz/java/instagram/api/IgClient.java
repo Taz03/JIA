@@ -27,12 +27,17 @@ import javax.crypto.spec.SecretKeySpec;
 
 public final class IgClient {
     private final String username, password;
-    private String authorization, cookies;
+    private String authorization;
     private HttpClient httpClient = HttpClient.newHttpClient();
 
     public IgClient(String username, String password) {
+        this(username, password, null);
+    }
+
+    public IgClient(String username, String password, String authorization) {
         this.username = username;
         this.password = password;
+        this.authorization = authorization;
     }
 
     public String getUsername() {
@@ -47,11 +52,13 @@ public final class IgClient {
         return authorization;
     }
 
-    public String getCookies() {
-        return cookies;
+    public void setAuthorization(String authorization) {
+        this.authorization = authorization;
     }
 
     public void login() {
+        if (authorization != null) return;
+
         httpClient.sendAsync(new QeSyncRequest().formRequest(this), BodyHandlers.discarding())
             .thenAccept(response -> {
                 HttpHeaders headers = response.headers();
@@ -71,7 +78,7 @@ public final class IgClient {
     public <T extends IgResponse> CompletableFuture<T> sendRequest(IgRequest<T> request) {
         return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
             .thenApply(response -> {
-                setFromResponseHeaders(response.headers());
+                response.headers().firstValue("ig-set-authorization").ifPresent(this::setAuthorization);
                 try {
                     return request.parseResponse(response.body());
                 } catch (JsonProcessingException e) {
@@ -79,10 +86,6 @@ public final class IgClient {
                 }
             }
         );
-    }
-
-    private void setFromResponseHeaders(HttpHeaders headers) {
-        headers.firstValue("ig-set-authorization").ifPresent(value -> this.authorization = value);
     }
 
     public static String encryptPassword(String password, String encryptionId, String encryptionKey) throws Exception {
