@@ -1,10 +1,10 @@
-package io.github.taz.java.instagram.api.responses;
+package io.github.taz.jia.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class IgBaseResponse implements IgResponse {
+public class InstagramBaseResponse implements InstagramResponse {
     @JsonProperty("status")
     private String status;
     @JsonProperty("message")

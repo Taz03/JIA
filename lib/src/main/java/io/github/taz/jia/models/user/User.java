@@ -1,4 +1,4 @@
-package io.github.taz.java.instagram.api.models.user;
+package io.github.taz.jia.models.user;
 
 import java.util.List;
 

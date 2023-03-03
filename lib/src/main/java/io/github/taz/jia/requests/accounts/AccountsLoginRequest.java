@@ -1,11 +1,11 @@
-package io.github.taz.java.instagram.api.requests.accounts;
+package io.github.taz.jia.requests.accounts;
 
 import java.util.Map;
 
-import io.github.taz.java.instagram.api.requests.IgPostRequest;
-import io.github.taz.java.instagram.api.responses.accounts.AccountsLoginResponse;
+import io.github.taz.jia.requests.InstagramPostRequest;
+import io.github.taz.jia.responses.accounts.AccountsLoginResponse;
 
-public final class AccountsLoginRequest extends IgPostRequest<AccountsLoginResponse> {
+public final class AccountsLoginRequest extends InstagramPostRequest<AccountsLoginResponse> {
 	public AccountsLoginRequest(String username, String encryptedPassword) throws Exception {
 		super(AccountsLoginResponse.class, "/accounts/login/", null, Map.of(
             "username", username,

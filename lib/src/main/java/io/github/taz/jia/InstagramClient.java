@@ -1,11 +1,11 @@
-package io.github.taz.java.instagram.api;
+package io.github.taz.jia;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import io.github.taz.java.instagram.api.requests.IgRequest;
-import io.github.taz.java.instagram.api.requests.accounts.AccountsLoginRequest;
-import io.github.taz.java.instagram.api.requests.qe.QeSyncRequest;
-import io.github.taz.java.instagram.api.responses.IgResponse;
+import io.github.taz.jia.requests.InstagramRequest;
+import io.github.taz.jia.requests.accounts.AccountsLoginRequest;
+import io.github.taz.jia.requests.qe.QeSyncRequest;
+import io.github.taz.jia.responses.InstagramResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.net.http.HttpClient;
@@ -25,16 +25,16 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public final class IgClient {
+public final class InstagramClient {
     private final String username, password;
     private String authorization;
     private HttpClient httpClient = HttpClient.newHttpClient();
 
-    public IgClient(String username, String password) {
+    public InstagramClient(String username, String password) {
         this(username, password, null);
     }
 
-    public IgClient(String username, String password, String authorization) {
+    public InstagramClient(String username, String password, String authorization) {
         this.username = username;
         this.password = password;
         this.authorization = authorization;
@@ -75,7 +75,7 @@ public final class IgClient {
             .join();
     }
 
-    public <T extends IgResponse> CompletableFuture<T> sendRequest(IgRequest<T> request) {
+    public <T extends InstagramResponse> CompletableFuture<T> sendRequest(InstagramRequest<T> request) {
         return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
             .thenApply(response -> {
                 response.headers().firstValue("ig-set-authorization").ifPresent(this::setAuthorization);
