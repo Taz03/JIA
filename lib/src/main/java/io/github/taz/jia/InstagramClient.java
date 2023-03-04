@@ -37,10 +37,23 @@ public final class InstagramClient {
     private String authorization;
     private HttpClient httpClient = HttpClient.newHttpClient();
 
+    /**
+     * Makes an intagram clinet, not logined.
+     *
+     * @param username The instagram username
+     * @param password The instagram password corresponding to the username provided
+     */
     public InstagramClient(String username, String password) {
         this(username, password, null);
     }
 
+    /**
+     * Makes an instagram client logined.
+     *
+     * @param username      The instagram username
+     * @param password      The instagram password corresponding to the username provided
+     * @param authorization The authorization token to corresponding to the username and password provided
+     */
     public InstagramClient(String username, String password, String authorization) {
         this.username = username;
         this.password = password;
@@ -63,6 +76,10 @@ public final class InstagramClient {
         this.authorization = authorization;
     }
 
+    /**
+     * Sends a login request for the username and password, if the authorization is not set (null),
+     * Otherwise it'll just use the authorization token provided.
+     */
     public void login() {
         if (authorization != null) return;
 
@@ -80,6 +97,13 @@ public final class InstagramClient {
         }
     }
 
+    /**
+     * Sends a request from this account.
+     *
+     * @param <T>     Response type from instagram
+     * @param request Request to send
+     * @return        CompletableFuture of response, throws {@link UncheckedIOException} if json parsing fails 
+     */
     public <T extends InstagramResponse> CompletableFuture<T> sendRequest(InstagramRequest<T> request) {
         return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
             .thenApply(response -> {
@@ -94,7 +118,16 @@ public final class InstagramClient {
         );
     }
 
-    public static String encryptPassword(String password, String encryptionId, String encryptionKey) throws Exception {
+    /**
+     * Encrypts a password using a combination of RSA and AES encryption algorithms.
+     *
+     * @param password      The password to be encrypted
+     * @param encryptionId  An identifier for the encryption
+     * @param encryptionKey The public key for RSA encryption
+     * @return              A string representation of the encrypted password, including the encryption metadata
+     * @throws Exception    If an error occurs during encryption
+     */
+    private static String encryptPassword(String password, String encryptionId, String encryptionKey) throws Exception {
         final int versionNumber = 4; // the encryption format being used, probably to future-proof the encryption process
         final int ivSize = 12;       // the size of the initialization vector used for AES
         final int aesKeySize = 32;
