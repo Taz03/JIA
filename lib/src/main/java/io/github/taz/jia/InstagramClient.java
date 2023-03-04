@@ -8,8 +8,10 @@ import io.github.taz.jia.requests.qe.QeSyncRequest;
 import io.github.taz.jia.responses.InstagramResponse;
 
 import java.io.ByteArrayOutputStream;
+import java.io.UncheckedIOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
+import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -25,7 +27,12 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class InstagramClient {
+    private static final Logger log = LoggerFactory.getLogger(InstagramClient.class);
+
     private final String username, password;
     private String authorization;
     private HttpClient httpClient = HttpClient.newHttpClient();
@@ -59,20 +66,18 @@ public final class InstagramClient {
     public void login() {
         if (authorization != null) return;
 
-        httpClient.sendAsync(new QeSyncRequest().formRequest(this), BodyHandlers.discarding())
-            .thenAccept(response -> {
-                HttpHeaders headers = response.headers();
-                String encryptionId = headers.firstValue("ig-set-password-encryption-key-id").get();
-                String encryptionKey = headers.firstValue("ig-set-password-encryption-pub-key").get();
+        try {
+            HttpResponse<Void> qeResponse = httpClient.send(new QeSyncRequest().formRequest(this), BodyHandlers.discarding());
 
-                try {
-                    String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
-                    sendRequest(new AccountsLoginRequest(username, encryptedPassword)).join();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            })
-            .join();
+            HttpHeaders headers = qeResponse.headers();
+            String encryptionId = headers.firstValue("ig-set-password-encryption-key-id").get();
+            String encryptionKey = headers.firstValue("ig-set-password-encryption-pub-key").get();
+
+            String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
+            sendRequest(new AccountsLoginRequest(username, encryptedPassword)).join();
+        } catch (Exception e) {
+            log.debug("Login failed for user %s".formatted(username), e);
+        }
     }
 
     public <T extends InstagramResponse> CompletableFuture<T> sendRequest(InstagramRequest<T> request) {
@@ -80,10 +85,11 @@ public final class InstagramClient {
             .thenApply(response -> {
                 response.headers().firstValue("ig-set-authorization").ifPresent(this::setAuthorization);
                 try {
-                    return request.parseResponse(response.body());
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
-                }
+					return request.parseResponse(response.body());
+				} catch (JsonProcessingException e) {
+                    log.debug("Json parsing failed, json: {}, class: {}", response.body(), request.getResponseType());
+                    throw new UncheckedIOException(e);
+				}
             }
         );
     }
