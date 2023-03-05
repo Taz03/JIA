@@ -1,9 +1,9 @@
-package io.github.taz.jia.requests.accounts;
+package io.github.taz03.jia.requests.accounts;
 
 import java.util.Map;
 
-import io.github.taz.jia.requests.InstagramPostRequest;
-import io.github.taz.jia.responses.accounts.AccountsLoginResponse;
+import io.github.taz03.jia.requests.InstagramPostRequest;
+import io.github.taz03.jia.responses.accounts.AccountsLoginResponse;
 
 public final class AccountsLoginRequest extends InstagramPostRequest<AccountsLoginResponse> {
 	public AccountsLoginRequest(String username, String encryptedPassword) throws Exception {

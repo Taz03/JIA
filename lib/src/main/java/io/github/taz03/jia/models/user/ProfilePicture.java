@@ -1,4 +1,4 @@
-package io.github.taz.jia.models.user;
+package io.github.taz03.jia.models.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

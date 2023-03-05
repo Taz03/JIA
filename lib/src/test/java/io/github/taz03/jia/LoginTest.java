@@ -1,11 +1,11 @@
-package io.github.taz.jia;
+package io.github.taz03.jia;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import io.github.taz.jia.requests.accounts.AccountsSetBiographyRequest;
-import io.github.taz.jia.responses.InstagramBaseResponse;
+import io.github.taz03.jia.requests.accounts.AccountsSetBiographyRequest;
+import io.github.taz03.jia.responses.InstagramBaseResponse;
 
 public class LoginTest {
     @Test

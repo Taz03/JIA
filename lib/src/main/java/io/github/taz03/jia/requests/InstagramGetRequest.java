@@ -1,11 +1,11 @@
-package io.github.taz.jia.requests;
+package io.github.taz03.jia.requests;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.Map;
 
-import io.github.taz.jia.InstagramClient;
-import io.github.taz.jia.responses.InstagramResponse;
+import io.github.taz03.jia.InstagramClient;
+import io.github.taz03.jia.responses.InstagramResponse;
 
 public class InstagramGetRequest<T extends InstagramResponse> extends InstagramRequest<T> {
 	protected InstagramGetRequest(Class<T> responseType, String path) {

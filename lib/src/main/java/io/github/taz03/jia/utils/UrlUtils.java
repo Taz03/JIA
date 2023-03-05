@@ -1,4 +1,4 @@
-package io.github.taz.jia.utils;
+package io.github.taz03.jia.utils;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;

@@ -1,9 +1,9 @@
-package io.github.taz.jia.requests.qe;
+package io.github.taz03.jia.requests.qe;
 
 import java.util.Map;
 
-import io.github.taz.jia.requests.InstagramPostRequest;
-import io.github.taz.jia.responses.InstagramBaseResponse;
+import io.github.taz03.jia.requests.InstagramPostRequest;
+import io.github.taz03.jia.responses.InstagramBaseResponse;
 
 public final class QeSyncRequest extends InstagramPostRequest<InstagramBaseResponse> {
 	public QeSyncRequest() {
