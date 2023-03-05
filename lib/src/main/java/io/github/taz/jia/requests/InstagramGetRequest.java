@@ -8,11 +8,11 @@ import io.github.taz.jia.InstagramClient;
 import io.github.taz.jia.responses.InstagramResponse;
 
 public class InstagramGetRequest<T extends InstagramResponse> extends InstagramRequest<T> {
-	public InstagramGetRequest(Class<T> responseType, String path) {
+	protected InstagramGetRequest(Class<T> responseType, String path) {
 		super(responseType, path, null);
 	}
 
-	public InstagramGetRequest(Class<T> responseType, String path, Map<String, Object> queries) {
+	protected InstagramGetRequest(Class<T> responseType, String path, Map<String, Object> queries) {
 		super(responseType, path, queries);
 	}
 

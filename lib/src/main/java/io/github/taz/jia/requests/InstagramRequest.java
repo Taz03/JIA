@@ -16,11 +16,11 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
     private final Class<T> responseType;
     private String url = "https://i.instagram.com/api/v1";
 
-    public InstagramRequest(Class<T> responseType, String path) {
+    protected InstagramRequest(Class<T> responseType, String path) {
         this(responseType, path, null);
     }
     
-    public InstagramRequest(Class<T> responseType, String path, Map<String, Object> queries) {
+    protected InstagramRequest(Class<T> responseType, String path, Map<String, Object> queries) {
         this.responseType = responseType;
         this.url += path;
 

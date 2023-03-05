@@ -12,15 +12,15 @@ import java.util.Map;
 public abstract class InstagramPostRequest<T extends InstagramResponse> extends InstagramRequest<T> {
     private String body = "";
 
-	public InstagramPostRequest(Class<T> responseType, String path) {
+	protected InstagramPostRequest(Class<T> responseType, String path) {
 		super(responseType, path, null);
 	}
 
-	public InstagramPostRequest(Class<T> responseType, String path, Map<String, Object> queries) {
+	protected InstagramPostRequest(Class<T> responseType, String path, Map<String, Object> queries) {
 		super(responseType, path, queries);
 	}
 
-	public InstagramPostRequest(Class<T> responseType, String path, Map<String, Object> queries, Map<String, Object> payload) {
+	protected InstagramPostRequest(Class<T> responseType, String path, Map<String, Object> queries, Map<String, Object> payload) {
 		super(responseType, path, queries);
         this.body = UrlUtils.makeBody(payload);
 	}

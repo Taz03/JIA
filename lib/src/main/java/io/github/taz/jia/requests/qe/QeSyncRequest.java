@@ -5,7 +5,7 @@ import java.util.Map;
 import io.github.taz.jia.requests.InstagramPostRequest;
 import io.github.taz.jia.responses.InstagramBaseResponse;
 
-public class QeSyncRequest extends InstagramPostRequest<InstagramBaseResponse> {
+public final class QeSyncRequest extends InstagramPostRequest<InstagramBaseResponse> {
 	public QeSyncRequest() {
 		super(InstagramBaseResponse.class, "/qe/sync/", null, Map.of(
             "id", "056b7f8b-5663-49fa-8e2c-50be47c2971a",
