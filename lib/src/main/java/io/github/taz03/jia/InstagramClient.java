@@ -1,11 +1,11 @@
-package io.github.taz.jia;
+package io.github.taz03.jia;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import io.github.taz.jia.requests.InstagramRequest;
-import io.github.taz.jia.requests.accounts.AccountsLoginRequest;
-import io.github.taz.jia.requests.qe.QeSyncRequest;
-import io.github.taz.jia.responses.InstagramResponse;
+import io.github.taz03.jia.requests.InstagramRequest;
+import io.github.taz03.jia.requests.accounts.AccountsLoginRequest;
+import io.github.taz03.jia.requests.qe.QeSyncRequest;
+import io.github.taz03.jia.responses.InstagramResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UncheckedIOException;

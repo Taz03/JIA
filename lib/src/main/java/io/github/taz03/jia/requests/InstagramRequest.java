@@ -1,4 +1,4 @@
-package io.github.taz.jia.requests;
+package io.github.taz03.jia.requests;
 
 import java.net.http.HttpRequest;
 import java.util.Map;
@@ -6,9 +6,9 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.taz.jia.InstagramClient;
-import io.github.taz.jia.responses.InstagramResponse;
-import io.github.taz.jia.utils.UrlUtils;
+import io.github.taz03.jia.InstagramClient;
+import io.github.taz03.jia.responses.InstagramResponse;
+import io.github.taz03.jia.utils.UrlUtils;
 
 public abstract class InstagramRequest<T extends InstagramResponse> {
     private static final ObjectMapper mapper = new ObjectMapper();
