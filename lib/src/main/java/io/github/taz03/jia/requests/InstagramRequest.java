@@ -16,10 +16,19 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
     private final Class<T> responseType;
     private String url = "https://i.instagram.com/api/v1";
 
+    /**
+     * @param responseType response type to parse the response json into
+     * @param path         url path to add into base url
+     */
     protected InstagramRequest(Class<T> responseType, String path) {
         this(responseType, path, null);
     }
     
+    /**
+     * @param responseType response type to parse the response json into
+     * @param path         url path to add into base url
+     * @param queries      url queries as map
+     */
     protected InstagramRequest(Class<T> responseType, String path, Map<String, Object> queries) {
         this.responseType = responseType;
         this.url += path;
@@ -28,16 +37,31 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
             url += "?" + UrlUtils.makeBody(queries);
     }
 
+    /**
+     * @return the full url
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * @return the response class type of this request
+     */
     public Class<T> getResponseType() {
         return responseType;
     }
 
+    /**
+     * @param client the client to use to make the request
+     */
     public abstract HttpRequest formRequest(InstagramClient client);
 
+    /**
+     * Parses json string to the corresponding response class.
+     *
+     * @param json the string json
+     * @return     parsed response class
+     */
     public T parseResponse(String json) throws JsonProcessingException {
         return mapper.readValue(json, responseType);
     }
