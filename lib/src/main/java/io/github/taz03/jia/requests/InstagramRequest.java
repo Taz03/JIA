@@ -19,8 +19,8 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
     /**
      * Constructs a generic Instagram request with the specified response type and path.
      *
-     * @param responseType response type to parse the response json into
-     * @param path         the path of the API endpoint that the client wants to access
+     * @param responseType Response type to parse the response json into
+     * @param path         The path of the API endpoint that the client wants to access
      */
     protected InstagramRequest(Class<T> responseType, String path) {
         this(responseType, path, null);
@@ -29,9 +29,9 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
     /**
      * Constructs a generic Instagram request with the specified response type, path and query parameters.
      *
-     * @param responseType response type to parse the response json into
-     * @param path         the path of the API endpoint that the client wants to access
-     * @param queries      the queries to send
+     * @param responseType Response type to parse the response json into
+     * @param path         The path of the API endpoint that the client wants to access
+     * @param queries      The queries to send
      */
     protected InstagramRequest(Class<T> responseType, String path, Map<String, Object> queries) {
         this.responseType = responseType;
@@ -42,29 +42,29 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
     }
 
     /**
-     * @return the full url
+     * @return The full url
      */
     public String getUrl() {
         return url;
     }
 
     /**
-     * @return the response class type of this request
+     * @return The response class type of this request
      */
     public Class<T> getResponseType() {
         return responseType;
     }
 
     /**
-     * @param client the client to use to make the request
+     * @param client The client to use to make the request
      */
     public abstract HttpRequest formRequest(InstagramClient client);
 
     /**
      * Parses json string to the corresponding response class.
      *
-     * @param json the string json
-     * @return     parsed response class
+     * @param json The string json
+     * @return     Parsed response class
      */
     public T parseResponse(String json) throws JsonProcessingException {
         return mapper.readValue(json, responseType);
