@@ -7,7 +7,10 @@ import java.util.Map;
 import io.github.taz03.jia.InstagramClient;
 import io.github.taz03.jia.responses.InstagramResponse;
 
-public class InstagramGetRequest<T extends InstagramResponse> extends InstagramRequest<T> {
+/**
+ * Represents an Instagram GET request.
+ */
+public abstract class InstagramGetRequest<T extends InstagramResponse> extends InstagramRequest<T> {
     /**
      * Constructs an Instagram GET request with the specified response type and path.
      *

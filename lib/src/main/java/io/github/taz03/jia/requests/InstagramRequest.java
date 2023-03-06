@@ -10,6 +10,9 @@ import io.github.taz03.jia.InstagramClient;
 import io.github.taz03.jia.responses.InstagramResponse;
 import io.github.taz03.jia.utils.UrlUtils;
 
+/**
+ * Represents a generic Instagram request.
+ */
 public abstract class InstagramRequest<T extends InstagramResponse> {
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -56,7 +59,9 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
     }
 
     /**
-     * @param client The client to use to make the request
+     * Makes a {@link HttpRequest} to send using {@link java.net.http.HttpClient}.
+     *
+     * @param client The client to generate this request for
      */
     public abstract HttpRequest formRequest(InstagramClient client);
 

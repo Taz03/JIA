@@ -9,6 +9,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.util.Map;
 
+/**
+ * Represents an Instagram POST request.
+ */
 public abstract class InstagramPostRequest<T extends InstagramResponse> extends InstagramRequest<T> {
     private String body = "";
 
