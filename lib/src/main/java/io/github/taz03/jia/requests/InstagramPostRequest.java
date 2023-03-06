@@ -13,27 +13,33 @@ public abstract class InstagramPostRequest<T extends InstagramResponse> extends 
     private String body = "";
 
     /**
+     * Constructs an Insatagram POST request wtih specified response type and path.
+     *
      * @param responseType response type to parse the response json into
-     * @param path         url path to add into base url
+     * @param path         the path of the API endpoint that the client wants to access
      */
 	protected InstagramPostRequest(Class<T> responseType, String path) {
 		super(responseType, path);
 	}
 
     /**
+     * Constructs an Insatagram POST request wtih specified response type, path and query parameters.
+     *
      * @param responseType response type to parse the response json into
-     * @param path         url path to add into base url
-     * @param queries      url queries as map
+     * @param path         the path of the API endpoint that the client wants to access
+     * @param queries      the queries to send
      */
 	protected InstagramPostRequest(Class<T> responseType, String path, Map<String, Object> queries) {
 		super(responseType, path, queries);
 	}
 
 	/**
+     * Constructs an Insatagram POST request wtih specified response type, path, query parameters and payload data.
+     *
      * @param responseType response type to parse the response json into
-     * @param path         url path to add into base url
-     * @param queries      url queries as map
-	 * @param payload      paylod as map
+     * @param path         the path of the API endpoint that the client wants to access
+     * @param queries      the queries to send
+	 * @param payload      the payload data to send
 	 */
 	protected InstagramPostRequest(Class<T> responseType, String path, Map<String, Object> queries, Map<String, Object> payload) {
 		super(responseType, path, queries);

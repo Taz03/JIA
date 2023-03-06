@@ -9,17 +9,21 @@ import io.github.taz03.jia.responses.InstagramResponse;
 
 public class InstagramGetRequest<T extends InstagramResponse> extends InstagramRequest<T> {
     /**
+     * Constructs an Instagram GET request with the specified response type and path.
+     *
      * @param responseType response type to parse the response json into
-     * @param path         url path to add into base url
+     * @param path         the path of the API endpoint that the client wants to access
      */
 	protected InstagramGetRequest(Class<T> responseType, String path) {
 		super(responseType, path);
 	}
 
     /**
+     * Constructs an Instagram GET request with the specified response type, path, and query parameters.
+     *
      * @param responseType response type to parse the response json into
-     * @param path         url path to add into base url
-     * @param queries      url queries as map
+     * @param path         the path of the API endpoint that the client wants to access
+     * @param queries      the queries to send
      */
 	protected InstagramGetRequest(Class<T> responseType, String path, Map<String, Object> queries) {
 		super(responseType, path, queries);

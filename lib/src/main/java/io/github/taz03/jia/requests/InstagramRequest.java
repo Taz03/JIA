@@ -17,17 +17,21 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
     private String url = "https://i.instagram.com/api/v1";
 
     /**
+     * Constructs a generaic Instagram request with the specified response type and path.
+     *
      * @param responseType response type to parse the response json into
-     * @param path         url path to add into base url
+     * @param path         the path of the API endpoint that the client wants to access
      */
     protected InstagramRequest(Class<T> responseType, String path) {
         this(responseType, path, null);
     }
     
     /**
+     * Constructs a generaic Instagram request with the specified response type, path and query parameters.
+     *
      * @param responseType response type to parse the response json into
-     * @param path         url path to add into base url
-     * @param queries      url queries as map
+     * @param path         the path of the API endpoint that the client wants to access
+     * @param queries      the queries to send
      */
     protected InstagramRequest(Class<T> responseType, String path, Map<String, Object> queries) {
         this.responseType = responseType;
