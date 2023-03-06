@@ -5,7 +5,19 @@ import java.util.Map;
 import io.github.taz03.jia.requests.InstagramPostRequest;
 import io.github.taz03.jia.responses.InstagramBaseResponse;
 
+/**
+ * Represents an Instagram qe sync request, used to sync data from Instagram server.
+ * <br><br>
+ * Endpoint: <i>/qe/sync</i>
+ * <br>
+ * Method: POST
+ * <br>
+ * Response: {@link InstagramBaseResponse}
+ */
 public final class QeSyncRequest extends InstagramPostRequest<InstagramBaseResponse> {
+	/**
+	 * Creates an Instagram qe sync request.
+	 */
 	public QeSyncRequest() {
 		super(InstagramBaseResponse.class, "/qe/sync/", null, Map.of(
             "id", "056b7f8b-5663-49fa-8e2c-50be47c2971a",
