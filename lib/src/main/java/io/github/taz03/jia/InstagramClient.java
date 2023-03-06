@@ -38,7 +38,7 @@ public final class InstagramClient {
     private HttpClient httpClient = HttpClient.newHttpClient();
 
     /**
-     * Makes an intagram clinet, not logined.
+     * Makes an Intagram clinet, not logined.
      *
      * @param username The instagram username
      * @param password The instagram password corresponding to the username provided
@@ -48,7 +48,7 @@ public final class InstagramClient {
     }
 
     /**
-     * Makes an instagram client logined.
+     * Makes an Instagram client logined.
      *
      * @param username      The instagram username
      * @param password      The instagram password corresponding to the username provided
@@ -78,7 +78,7 @@ public final class InstagramClient {
 
     /**
      * Sends a login request for the username and password, if the authorization is not set (null),
-     * Otherwise it'll just use the authorization token provided.
+     * Otherwise it'll use the authorization token provided.
      */
     public void login() {
         if (authorization != null) return;
