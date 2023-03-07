@@ -2,6 +2,17 @@ plugins {
     id 'java-library'
 }
 
+sourceSets {
+    integrationTest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+}
+
 repositories {
     mavenCentral()
 }
@@ -17,8 +28,27 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+
     testLogging {
         exceptionFormat = "full"
         showStandardStreams = true
     }
 }
+
+tasks.register('integrationTest', Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+
+    useJUnitPlatform()
+
+    testLogging {
+        exceptionFormat = "full"
+        showStandardStreams = true
+    }
+}
+
+check.dependsOn integrationTest
+
