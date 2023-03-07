@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 public final class LoginTest {
     @ParameterizedTest
-    @CsvFileSource(resources = "src/integrationTest/resources/user.csv")
+    @CsvFileSource(resources = "/user.csv")
     public void loginTest(String username, String password) {
         InstagramClient client = new InstagramClient(username, password);
         client.login();

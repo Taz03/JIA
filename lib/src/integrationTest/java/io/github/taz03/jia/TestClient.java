@@ -1,5 +1,6 @@
 package io.github.taz03.jia;
 
+// Proxy Client
 public final class TestClient {
     private static InstagramClient client;
 
