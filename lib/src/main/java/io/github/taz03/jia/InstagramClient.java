@@ -3,7 +3,7 @@ package io.github.taz03.jia;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import io.github.taz03.jia.requests.InstagramRequest;
-import io.github.taz03.jia.requests.accounts.AccountsLoginRequest;
+import io.github.taz03.jia.requests.accounts.LoginRequest;
 import io.github.taz03.jia.requests.qe.QeSyncRequest;
 import io.github.taz03.jia.responses.InstagramResponse;
 
@@ -91,7 +91,7 @@ public final class InstagramClient {
             String encryptionKey = headers.firstValue("ig-set-password-encryption-pub-key").get();
 
             String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
-            sendRequest(new AccountsLoginRequest(username, encryptedPassword)).join();
+            sendRequest(new LoginRequest(username, encryptedPassword)).join();
         } catch (Exception e) {
             log.debug("Login failed for user %s".formatted(username), e);
         }

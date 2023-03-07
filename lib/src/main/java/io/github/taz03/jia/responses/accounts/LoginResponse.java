@@ -9,7 +9,7 @@ import io.github.taz03.jia.responses.InstagramBaseResponse;
 import io.github.taz03.jia.responses.InstagramResponse;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class AccountsLoginResponse implements InstagramResponse {
+public final class LoginResponse implements InstagramResponse {
     @JsonUnwrapped
     private InstagramBaseResponse baseResponse;
     @JsonProperty("logged_in_user")

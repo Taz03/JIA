@@ -3,7 +3,7 @@ package io.github.taz03.jia.requests.accounts;
 import java.util.Map;
 
 import io.github.taz03.jia.requests.InstagramPostRequest;
-import io.github.taz03.jia.responses.accounts.AccountsLoginResponse;
+import io.github.taz03.jia.responses.accounts.LoginResponse;
 
 /**
  * Represents an Instagram login request, used to login into an users account.
@@ -12,9 +12,9 @@ import io.github.taz03.jia.responses.accounts.AccountsLoginResponse;
  * <br>
  * Method: POST
  * <br>
- * Response: {@link AccountsLoginResponse}
+ * Response: {@link LoginResponse}
  */
-public final class AccountsLoginRequest extends InstagramPostRequest<AccountsLoginResponse> {
+public final class LoginRequest extends InstagramPostRequest<LoginResponse> {
 	/**
      * Creates an Instagram login request.
      *
@@ -22,8 +22,8 @@ public final class AccountsLoginRequest extends InstagramPostRequest<AccountsLog
 	 * @param encryptedPassword Instagram encrypted password
 	 * @throws Exception        If the passowrd is invalid
 	 */
-	public AccountsLoginRequest(String username, String encryptedPassword) throws Exception {
-		super(AccountsLoginResponse.class, "/accounts/login/", null, Map.of(
+	public LoginRequest(String username, String encryptedPassword) throws Exception {
+		super(LoginResponse.class, "/accounts/login/", null, Map.of(
             "username", username,
             "enc_password", encryptedPassword,
             "device_id", "android-a25a335851cf770b",

@@ -14,13 +14,13 @@ import io.github.taz03.jia.responses.InstagramBaseResponse;
  * <br>
  * Response: {@link InstagramBaseResponse}
  */
-public final class AccountsSetBiographyRequest extends InstagramPostRequest<InstagramBaseResponse> {
+public final class SetBiographyRequest extends InstagramPostRequest<InstagramBaseResponse> {
 	/**
      * Creates an Instagram set biography request.
      *
 	 * @param biography New biography to set
 	 */
-	public AccountsSetBiographyRequest(String biography) {
+	public SetBiographyRequest(String biography) {
 		super(InstagramBaseResponse.class, "/accounts/set_biography/", null, Map.of("raw_text", biography));
 	}
 }
