@@ -12,7 +12,7 @@ public final class TestClient {
     public static final record User(
         @JsonProperty("username")
         String username,
-        @JsonProperty("passowrd")
+        @JsonProperty("password")
         String password,
         @JsonProperty("phone_number")
         String phoneNumber,

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public final class LoginTest {
     @Test
     public void loginTest() throws Exception {
-        TestClient.user = new ObjectMapper().readValue(Files.readString(Path.of("lib/src/integrationTest/resources/user.json")), TestClient.User.class);
+        TestClient.user = new ObjectMapper().readValue(Files.readString(Path.of("src/integrationTest/resources/user.json")), TestClient.User.class);
 
         InstagramClient client = new InstagramClient(TestClient.user.username(), TestClient.user.password());
         client.login();

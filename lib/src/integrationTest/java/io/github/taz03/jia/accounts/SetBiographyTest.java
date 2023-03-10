@@ -12,7 +12,7 @@ public final class SetBiographyTest {
     @Test
     public void setBioTest() throws Exception {
         SetBiographyRequest request = new SetBiographyRequest("Test bio from JIA library!");
-        InstagramBaseResponse response = TestClient.getClient().sendRequest(request).get();
+        InstagramBaseResponse response = TestClient.client.sendRequest(request).get();
 
         assertEquals("ok", response.getStatus());
     }
