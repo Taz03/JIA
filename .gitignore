@@ -12,4 +12,4 @@ bin
 .idea
 
 # User credentials
-user.csv
+user.json
