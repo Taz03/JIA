@@ -9,10 +9,6 @@ import io.github.taz03.jia.responses.accounts.LoginResponse;
  * Represents an Instagram login request, used to login into an users account.
  * <br><br>
  * Endpoint: <i>/accounts/login</i>
- * <br>
- * Method: POST
- * <br>
- * Response: {@link LoginResponse}
  */
 public final class LoginRequest extends InstagramPostRequest<LoginResponse> {
 	/**

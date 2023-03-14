@@ -9,10 +9,6 @@ import io.github.taz03.jia.responses.InstagramBaseResponse;
  * Represents an Instagram set biography request, used to set biography of a user.
  * <br><br>
  * Endpoint: <i>/accounts/set_biography</i>
- * <br>
- * Method: POST
- * <br>
- * Response: {@link InstagramBaseResponse}
  */
 public final class SetBiographyRequest extends InstagramPostRequest<InstagramBaseResponse> {
 	/**

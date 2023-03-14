@@ -9,10 +9,6 @@ import io.github.taz03.jia.responses.InstagramBaseResponse;
  * Represents an Instagram set gender request, used to set gender of the user.
  * <br><br>
  * Endpoint: <i>/accounts/set_gender/</i>
- * <br>
- * Method: POST
- * <br>
- * Response: {@link InstagramBaseResponse}
  */
 public final class SetGenderRequest extends InstagramPostRequest<InstagramBaseResponse> {
     public static enum Gender {

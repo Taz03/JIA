@@ -9,10 +9,6 @@ import io.github.taz03.jia.responses.InstagramBaseResponse;
  * Represents an Instagram qe sync request, used to sync data from Instagram server.
  * <br><br>
  * Endpoint: <i>/qe/sync</i>
- * <br>
- * Method: POST
- * <br>
- * Response: {@link InstagramBaseResponse}
  */
 public final class QeSyncRequest extends InstagramPostRequest<InstagramBaseResponse> {
 	/**

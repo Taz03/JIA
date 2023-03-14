@@ -9,10 +9,6 @@ import io.github.taz03.jia.responses.accounts.EditProfileResponse;
  * Represents an Instagram edit profile request, used to edit profile data such as username, phone number, etc.
  * <br><br>
  * Endpoint: <i>/accounts/edit_profile/</i>
- * <br>
- * Method: POST
- * <br>
- * Response: {@link EditProfileResponse}
  */
 public final class EditProfileRequest extends InstagramPostRequest<EditProfileResponse> {
 	/**
