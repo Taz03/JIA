@@ -2,12 +2,10 @@ package io.github.taz03.jia;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import io.github.taz03.jia.models.user.User;
 import io.github.taz03.jia.requests.InstagramRequest;
 import io.github.taz03.jia.requests.accounts.LoginRequest;
 import io.github.taz03.jia.requests.qe.QeSyncRequest;
 import io.github.taz03.jia.responses.InstagramResponse;
-import io.github.taz03.jia.responses.accounts.LoginResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UncheckedIOException;
@@ -37,7 +35,7 @@ public final class InstagramClient {
 
     private final String username, password;
     private String authorization;
-    private User user;
+    private long pk;
     private HttpClient httpClient = HttpClient.newHttpClient();
 
     /**
@@ -63,47 +61,22 @@ public final class InstagramClient {
         this.authorization = authorization;
     }
 
-    /**
-     * Get username.
-     *
-     * @return The username of this Instagram user
-     */
     public String getUsername() {
         return username;
     }
 
-    /**
-     * Get password.
-     *
-     * @return The password of this Instagram user
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     * Get authorization token.
-     *
-     * @return The authorization token of this Instagram user
-     */
     public String getAuthorization() {
         return authorization;
     }
 
-    /**
-     * Get {@link User} object, which has data about the current logged in user.
-     *
-     * @return The {@link User} for this Instagram user
-     */
-    public User getUser() {
-        return user;
+    public long getPk() {
+        return pk;
     }
 
-    /**
-     * Set authorization token.
-     *
-     * @param authorization The new authorization token to set
-     */
     public void setAuthorization(String authorization) {
         this.authorization = authorization;
     }
@@ -123,9 +96,8 @@ public final class InstagramClient {
             String encryptionKey = headers.firstValue("ig-set-password-encryption-pub-key").get();
 
             String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
-            LoginResponse response = sendRequest(new LoginRequest(username, encryptedPassword)).get();
 
-            this.user = response.getUser();
+            this.pk = sendRequest(new LoginRequest(username, encryptedPassword)).get().getUser().getProfile().getPk();
         } catch (Exception e) {
             log.debug("Login failed for user %s".formatted(username), e);
         }
