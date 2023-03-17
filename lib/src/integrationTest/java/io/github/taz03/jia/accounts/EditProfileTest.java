@@ -14,6 +14,6 @@ public final class EditProfileTest {
         EditProfileRequest request = new EditProfileRequest("JIA", "JIA test bio [edit profile request]", user.username(), user.phoneNumber(), user.email(), "");
         UserResponse response = client.sendRequest(request).get();
 
-        assertEquals("ok", response.getBaseResponse().getStatus());
+        assertEquals("ok", response.getStatus());
     }
 }

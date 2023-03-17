@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import io.github.taz03.jia.requests.accounts.SetGenderRequest;
 import io.github.taz03.jia.requests.accounts.SetGenderRequest.Gender;
-import io.github.taz03.jia.responses.InstagramBaseResponse;
+import io.github.taz03.jia.responses.InstagramResponse;
 
 public final class SetGenderTest {
     @ParameterizedTest
@@ -24,7 +24,7 @@ public final class SetGenderTest {
             case String s -> request = new SetGenderRequest(s);
             default -> throw new IllegalArgumentException("Unexpected gender: " + gender.toString());
         }
-        InstagramBaseResponse response = client.sendRequest(request).get();
+        InstagramResponse response = client.sendRequest(request).get();
 
         assertEquals("ok", response.getStatus());
     }
