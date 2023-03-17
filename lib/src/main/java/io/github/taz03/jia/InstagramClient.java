@@ -6,6 +6,7 @@ import io.github.taz03.jia.requests.InstagramRequest;
 import io.github.taz03.jia.requests.accounts.LoginRequest;
 import io.github.taz03.jia.requests.qe.QeSyncRequest;
 import io.github.taz03.jia.responses.InstagramResponse;
+import io.github.taz03.jia.responses.accounts.LoginResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UncheckedIOException;
@@ -82,25 +83,21 @@ public final class InstagramClient {
     }
 
     /**
-     * Sends a login request for the username and password, if the authorization is not set (null),
-     * Otherwise it'll use the authorization token provided.
+     * Sends a login request for the username and password
      */
-    public void login() {
-        if (authorization != null) return;
+    public LoginResponse login() throws Exception {
+        HttpResponse<Void> qeResponse = httpClient.send(new QeSyncRequest().formRequest(this), BodyHandlers.discarding());
 
-        try {
-            HttpResponse<Void> qeResponse = httpClient.send(new QeSyncRequest().formRequest(this), BodyHandlers.discarding());
+        HttpHeaders headers = qeResponse.headers();
+        String encryptionId = headers.firstValue("ig-set-password-encryption-key-id").get();
+        String encryptionKey = headers.firstValue("ig-set-password-encryption-pub-key").get();
 
-            HttpHeaders headers = qeResponse.headers();
-            String encryptionId = headers.firstValue("ig-set-password-encryption-key-id").get();
-            String encryptionKey = headers.firstValue("ig-set-password-encryption-pub-key").get();
+        String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
 
-            String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
+        LoginResponse response = sendRequest(new LoginRequest(this.username, encryptedPassword)).get();
+        this.pk = response.getUser().getProfile().getPk();
 
-            this.pk = sendRequest(new LoginRequest(username, encryptedPassword)).get().getUser().getProfile().getPk();
-        } catch (Exception e) {
-            log.debug("Login failed for user %s".formatted(username), e);
-        }
+        return response;
     }
 
     /**
