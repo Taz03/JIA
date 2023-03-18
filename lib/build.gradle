@@ -2,6 +2,20 @@ plugins {
     id 'java-library'
 }
 
+sourceCompatibility = JavaVersion.VERSION_19
+targetCompatibility = JavaVersion.VERSION_19
+
+sourceSets {
+    integrationTest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+}
+
 repositories {
     mavenCentral()
 }
@@ -10,6 +24,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
+    implementation 'org.slf4j:slf4j-api:2.0.6'
 
     testImplementation 'org.slf4j:slf4j-simple:2.0.6'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
@@ -17,8 +32,34 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+
     testLogging {
         exceptionFormat = "full"
         showStandardStreams = true
     }
+}
+
+tasks.register('integrationTest', Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+
+    useJUnitPlatform()
+
+    testLogging {
+        exceptionFormat = "full"
+        showStandardStreams = true
+    }
+}
+
+check.dependsOn integrationTest
+
+tasks.withType(JavaCompile).each {
+    it.options.compilerArgs.add('--enable-preview')
+}
+
+tasks.withType(Test) {
+    jvmArgs += "--enable-preview"
 }
