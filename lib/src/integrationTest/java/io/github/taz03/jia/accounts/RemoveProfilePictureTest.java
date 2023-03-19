@@ -14,6 +14,6 @@ public final class RemoveProfilePictureTest {
         RemoveProfilePictureRequest request = new RemoveProfilePictureRequest();
         UserResponse response = client.sendRequest(request).get();
 
-        assertEquals("ok", response.getBaseResponse().getStatus());
+        assertEquals("ok", response.getStatus());
     }
 }

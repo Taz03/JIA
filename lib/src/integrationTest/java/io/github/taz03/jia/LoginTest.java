@@ -17,7 +17,7 @@ public final class LoginTest {
     }
 
     @Test
-    public void loginTest() {
+    public void loginTest() throws Exception {
         InstagramClient client = new InstagramClient(TestClient.user.username(), TestClient.user.password());
         client.login();
 

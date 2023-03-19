@@ -19,7 +19,7 @@ public final class SetVisibilityTest {
         SetVisibilityRequest request = new SetVisibilityRequest(visiblity);
         UserResponse response = client.sendRequest(request).get();
 
-        assertEquals("ok", response.getBaseResponse().getStatus());
+        assertEquals("ok", response.getStatus());
     }
     
     private static List<Visiblity> getVisiblities() {
