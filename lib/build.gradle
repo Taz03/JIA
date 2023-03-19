@@ -1,6 +1,11 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
+    id 'signing'
 }
+
+group = 'io.github.taz03'
+version = '0.1-SNAPSHOT'
 
 sourceCompatibility = JavaVersion.VERSION_19
 targetCompatibility = JavaVersion.VERSION_19
@@ -31,11 +36,6 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
-
-    testLogging {
-        exceptionFormat = "full"
-        showStandardStreams = true
-    }
 }
 
 tasks.register('integrationTest', Test) {
@@ -61,4 +61,66 @@ tasks.withType(JavaCompile).each {
 
 tasks.withType(Test) {
     jvmArgs += "--enable-preview"
+
+    testLogging {
+        exceptionFormat = "full"
+        showStandardStreams = true
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'jia'
+            from components.java
+
+            pom {
+                name = 'JIA'
+                description = 'Java API Wrapper for Instagram Private API'
+                url = 'https://github.com/Taz03/JIA'
+
+                licenses {
+                    license {
+                        name = 'GNU General Public License v3.0'
+                        url = 'https://www.gnu.org/licenses/gpl-3.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'Taz03'
+                        name = 'Tanish Azad'
+                        email = 'tanishazad03@gmail.com'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://example.com/my-library.git'
+                    developerConnection = 'scm:git:ssh://example.com/my-library.git'
+                    url = 'https://github.com/Taz03/JIA'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            def releasesRepoUrl = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotsRepoUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username = project.findProperty("ossrhUsername")
+                password = project.findProperty("ossrhPassword")
+            }
+        }
+    }
+}
+
+signing {
+    sign configurations.archives
+}
+
+javadoc {
+    options.addBooleanOption('html5', true)
 }
