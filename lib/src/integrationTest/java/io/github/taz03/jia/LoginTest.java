@@ -19,7 +19,7 @@ public final class LoginTest {
     @Test
     public void loginTest() throws Exception {
         InstagramClient client = new InstagramClient(TestClient.user.username(), TestClient.user.password());
-        client.login();
+        client.login(() -> System.getProperty("verificationCode"));
 
         assertNotNull(client.getAuthorization());
         TestClient.client = client;
