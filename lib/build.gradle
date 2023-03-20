@@ -45,7 +45,7 @@ tasks.register('integrationTest', Test) {
     testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
 
-    systemProperties(System.getProperties())
+    systemProperty 'verificationCode', System.getProperty('verificationCode')
 
     useJUnitPlatform()
 }
