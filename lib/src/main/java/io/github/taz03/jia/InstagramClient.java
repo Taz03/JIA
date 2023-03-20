@@ -25,7 +25,6 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.IntSupplier;
 import java.util.function.Supplier;
 
 import javax.crypto.Cipher;
@@ -86,15 +85,26 @@ public final class InstagramClient {
         this.authorization = authorization;
     }
 
+    /**
+     * Logs in a user with their username and password.
+     *
+     * @return A LoginResponse object containing information about the user and their session.
+     */
     public LoginResponse login() throws Exception {
         return login(null);
     }
 
     /**
-     * Sends a login request for the username and password
+     * Logs in a user with their username and password.
+     * <br>
+     * If two-factor authentication is required, a verification code must be provided through the verificationCodeSupplier parameter.
+     * 
+     * @param verificationCodeSupplier A Supplier that provides a verification code if two-factor authentication is required.
+     * @return A LoginResponse object containing information about the user and their session.
      */
     public LoginResponse login(Supplier<String> verificationCodeSupplier) throws Exception {
-        HttpResponse<Void> qeResponse = httpClient.send(new QeSyncRequest().formRequest(this), BodyHandlers.discarding());
+        HttpResponse<Void> qeResponse = httpClient.send(new QeSyncRequest().formRequest(this),
+                BodyHandlers.discarding());
 
         HttpHeaders headers = qeResponse.headers();
         String encryptionId = headers.firstValue("ig-set-password-encryption-key-id").get();
