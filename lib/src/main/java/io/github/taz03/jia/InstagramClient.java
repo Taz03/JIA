@@ -1,9 +1,11 @@
 package io.github.taz03.jia;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.taz03.jia.requests.InstagramRequest;
 import io.github.taz03.jia.requests.accounts.LoginRequest;
+import io.github.taz03.jia.requests.accounts.TwoFactorLoginRequest;
 import io.github.taz03.jia.requests.qe.QeSyncRequest;
 import io.github.taz03.jia.responses.InstagramResponse;
 import io.github.taz03.jia.responses.accounts.LoginResponse;
@@ -23,6 +25,8 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.IntSupplier;
+import java.util.function.Supplier;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.GCMParameterSpec;
@@ -82,10 +86,14 @@ public final class InstagramClient {
         this.authorization = authorization;
     }
 
+    public LoginResponse login() throws Exception {
+        return login(null);
+    }
+
     /**
      * Sends a login request for the username and password
      */
-    public LoginResponse login() throws Exception {
+    public LoginResponse login(Supplier<String> verificationCodeSupplier) throws Exception {
         HttpResponse<Void> qeResponse = httpClient.send(new QeSyncRequest().formRequest(this), BodyHandlers.discarding());
 
         HttpHeaders headers = qeResponse.headers();
@@ -94,10 +102,20 @@ public final class InstagramClient {
 
         String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
 
-        LoginResponse response = sendRequest(new LoginRequest(this.username, encryptedPassword)).get();
-        this.pk = response.getUser().getProfile().getPk();
+        LoginRequest loginRequest = new LoginRequest(this.username, encryptedPassword);
+        HttpResponse<String> loginHttpResponse = httpClient.send(loginRequest.formRequest(this), BodyHandlers.ofString());
 
-        return response;
+        LoginResponse loginResponse;
+        if (loginHttpResponse.body().contains("two_factor_required")) {
+            String twoFactorIdentifier = new ObjectMapper().readTree(loginHttpResponse.body()).at("/two_factor_info/two_factor_identifier").asText();
+            loginResponse = sendRequest(new TwoFactorLoginRequest(username, verificationCodeSupplier.get(), twoFactorIdentifier)).get();
+        } else {
+            loginResponse = loginRequest.parseResponse(loginHttpResponse.body());
+            loginHttpResponse.headers().firstValue("ig-set-authorization").ifPresent(this::setAuthorization);
+        }
+
+        this.pk = loginResponse.getUser().getProfile().getPk();
+        return loginResponse;
     }
 
     /**
