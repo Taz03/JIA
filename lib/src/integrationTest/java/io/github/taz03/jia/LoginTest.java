@@ -13,15 +13,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public final class LoginTest {
     @BeforeAll
     public static void initTestClientUser() throws Exception {
-        TestClient.user = new ObjectMapper().readValue(Files.readString(Path.of("src/integrationTest/resources/user.json")), TestClient.User.class);
+        TestProxy.user = new ObjectMapper().readValue(Files.readString(Path.of("src/integrationTest/resources/user.json")), TestProxy.User.class);
     }
 
     @Test
-    public void loginTest() {
-        InstagramClient client = new InstagramClient(TestClient.user.username(), TestClient.user.password());
-        client.login();
+    public void loginTest() throws Exception {
+        InstagramClient client = new InstagramClient(TestProxy.user.username(), TestProxy.user.password());
+        client.login(() -> System.getProperty("verificationCode"));
 
         assertNotNull(client.getAuthorization());
-        TestClient.client = client;
+        TestProxy.client = client;
     }
 }

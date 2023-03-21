@@ -1,7 +1,7 @@
 package io.github.taz03.jia.accounts;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static io.github.taz03.jia.TestClient.*;
+import static io.github.taz03.jia.TestProxy.*;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public final class SetVisibilityTest {
         SetVisibilityRequest request = new SetVisibilityRequest(visiblity);
         UserResponse response = client.sendRequest(request).get();
 
-        assertEquals("ok", response.getBaseResponse().getStatus());
+        assertEquals("ok", response.getStatus());
     }
     
     private static List<Visiblity> getVisiblities() {

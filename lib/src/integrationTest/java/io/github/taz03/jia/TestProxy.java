@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 // Proxy Client
-public final class TestClient {
+public final class TestProxy {
     public static InstagramClient client;
     public static User user;
 

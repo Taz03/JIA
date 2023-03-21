@@ -1,7 +1,7 @@
 package io.github.taz03.jia.accounts;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static io.github.taz03.jia.TestClient.*;
+import static io.github.taz03.jia.TestProxy.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +14,6 @@ public final class RemoveProfilePictureTest {
         RemoveProfilePictureRequest request = new RemoveProfilePictureRequest();
         UserResponse response = client.sendRequest(request).get();
 
-        assertEquals("ok", response.getBaseResponse().getStatus());
+        assertEquals("ok", response.getStatus());
     }
 }

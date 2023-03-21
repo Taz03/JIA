@@ -3,14 +3,14 @@ package io.github.taz03.jia.requests.accounts;
 import java.util.Map;
 
 import io.github.taz03.jia.requests.InstagramPostRequest;
-import io.github.taz03.jia.responses.InstagramBaseResponse;
+import io.github.taz03.jia.responses.InstagramResponse;
 
 /**
  * Represents an Instagram set gender request, used to set gender.
  * <br><br>
  * Endpoint: <i>/accounts/set_gender/</i>
  */
-public final class SetGenderRequest extends InstagramPostRequest<InstagramBaseResponse> {
+public final class SetGenderRequest extends InstagramPostRequest<InstagramResponse> {
     public static enum Gender {
         MALE(1),
         FEMALE(2),
@@ -27,7 +27,7 @@ public final class SetGenderRequest extends InstagramPostRequest<InstagramBaseRe
         }
     }
 
-    private static final Class<InstagramBaseResponse> RESPONSE_CLASS = InstagramBaseResponse.class;
+    private static final Class<InstagramResponse> RESPONSE_CLASS = InstagramResponse.class;
     private static final String PATH = "/accounts/set_gender/";
 
     /**
