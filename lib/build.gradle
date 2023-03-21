@@ -91,8 +91,8 @@ publishing {
                 }
 
                 scm {
-                    connection = 'scm:git:git://example.com/my-library.git'
-                    developerConnection = 'scm:git:ssh://example.com/my-library.git'
+                    connection = 'scm:git:https://github.com/Taz03/JIA.git'
+                    developerConnection = 'scm:git:https://github.com/Taz03/JIA.git'
                     url = 'https://github.com/Taz03/JIA'
                 }
             }
