@@ -1,4 +1,4 @@
-package io.github.taz03.jia.models.user;
+package io.github.taz03.jia.responses.models.user;
 
 import java.util.List;
 
