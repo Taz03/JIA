@@ -17,8 +17,8 @@ public final class EditProfileRequest extends InstagramPostRequest<UserResponse>
 	 * @param name        New display name to set
 	 * @param biography   New biography to set
 	 * @param username    New username to set
-	 * @param phoneNumber New phone numer to set
-	 * @param email       New email to set
+	 * @param phoneNumber Current phone number
+	 * @param email       Current email
 	 * @param externalUrl New external url to set
 	 */
 	public EditProfileRequest(String name, String biography, String username, String phoneNumber, String email, String externalUrl) {
