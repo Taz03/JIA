@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import io.github.taz03.jia.requests.accounts.SetVisibilityRequest;
 import io.github.taz03.jia.requests.accounts.SetVisibilityRequest.Visiblity;
-import io.github.taz03.jia.responses.accounts.UserResponse;
+import io.github.taz03.jia.responses.UserResponse;
 
 public final class SetVisibilityTest {
     @ParameterizedTest

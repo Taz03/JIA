@@ -3,7 +3,7 @@ package io.github.taz03.jia.requests.accounts;
 import java.util.Map;
 
 import io.github.taz03.jia.requests.InstagramPostRequest;
-import io.github.taz03.jia.responses.accounts.UserResponse;
+import io.github.taz03.jia.responses.UserResponse;
 
 /**
  * Represents an Instagram edit profile request, used to edit profile data such as username, phone number, etc.
