@@ -1,6 +1,6 @@
 package io.github.taz03.jia.accounts;
 
-import static io.github.taz03.jia.TestClient.client;
+import static io.github.taz03.jia.TestProxy.client;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
