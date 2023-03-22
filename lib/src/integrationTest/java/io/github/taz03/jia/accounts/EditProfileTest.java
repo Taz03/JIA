@@ -6,7 +6,7 @@ import static io.github.taz03.jia.TestProxy.*;
 import org.junit.jupiter.api.Test;
 
 import io.github.taz03.jia.requests.accounts.EditProfileRequest;
-import io.github.taz03.jia.responses.UserResponse;
+import io.github.taz03.jia.responses.users.UserResponse;
 
 public final class EditProfileTest {
     @Test

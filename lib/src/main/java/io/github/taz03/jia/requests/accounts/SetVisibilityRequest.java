@@ -1,7 +1,7 @@
 package io.github.taz03.jia.requests.accounts;
 
 import io.github.taz03.jia.requests.InstagramPostRequest;
-import io.github.taz03.jia.responses.UserResponse;
+import io.github.taz03.jia.responses.users.UserResponse;
 
 /**
  * Represents an Instagram set visiblity request, used to set visiblity of Instagram account(public or private).

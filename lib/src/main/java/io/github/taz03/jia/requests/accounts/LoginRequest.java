@@ -3,7 +3,7 @@ package io.github.taz03.jia.requests.accounts;
 import java.util.Map;
 
 import io.github.taz03.jia.requests.InstagramPostRequest;
-import io.github.taz03.jia.responses.LoginResponse;
+import io.github.taz03.jia.responses.accounts.LoginResponse;
 
 /**
  * Represents an Instagram login request, used to login into an users account.

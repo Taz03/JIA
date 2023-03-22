@@ -8,7 +8,7 @@ import io.github.taz03.jia.requests.accounts.LoginRequest;
 import io.github.taz03.jia.requests.accounts.TwoFactorLoginRequest;
 import io.github.taz03.jia.requests.qe.QeSyncRequest;
 import io.github.taz03.jia.responses.InstagramResponse;
-import io.github.taz03.jia.responses.LoginResponse;
+import io.github.taz03.jia.responses.accounts.LoginResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UncheckedIOException;

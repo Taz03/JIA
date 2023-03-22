@@ -1,7 +1,7 @@
 package io.github.taz03.jia.requests.accounts;
 
 import io.github.taz03.jia.requests.InstagramPostRequest;
-import io.github.taz03.jia.responses.UserResponse;
+import io.github.taz03.jia.responses.users.UserResponse;
 
 /**
  * Represents an Instagram remove profile picture request, used to remove profile picture.
