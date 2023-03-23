@@ -5,8 +5,8 @@ import io.github.taz03.jia.responses.users.UserResponse;
 
 /**
  * Represents an Instagram user info request, used to get details about an Instagram user.
- *
- * Endpoint: <i>/users/\<pk\>/info
+ * <br><br>
+ * Endpoint: <i>/users/{pk}/info
  */
 public final class UserInfoRequest extends InstagramGetRequest<UserResponse> {
     /**
