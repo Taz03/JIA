@@ -1,6 +1,8 @@
 package io.github.taz03.jia.requests;
 
 import java.net.http.HttpRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -17,7 +19,7 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     private final Class<T> responseType;
-    private String url = "https://i.instagram.com/api/v1";
+    private String url = "https://i.instagram.com";
 
     /**
      * Constructs a generic Instagram request with the specified response type and path.
@@ -75,11 +77,18 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
         return mapper.readValue(json, responseType);
     }
 
-    protected static String[] getHeaders(InstagramClient client) {
-        return new String[] {
+    protected Map<String, Object> getHeaders(InstagramClient client) {
+        return Map.of(
             "Content-Type", "application/x-www-form-urlencoded; charset=UTF-8",
             "User-Agent", "Instagram 265.0.0.19.301 Android (33/13; 374dpi; 1080x2224; Google/google; sdk_gphone64_x86_64; emu64x; ranchu; en_US; 436384448)",
-            "Authorization", client.getAuthorization() == null ? "" : client.getAuthorization(),
-        };
+            "Authorization", client.getAuthorization() == null ? "" : client.getAuthorization()
+        );
+    }
+
+    protected static String[] makeHeaderArray(Map<String, Object> headers) {
+        return headers.keySet().stream()
+            .flatMap(key -> List.of(key, headers.get(key).toString()).stream())
+            .toList()
+            .toArray(new String[0]);
     }
 }

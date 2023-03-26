@@ -8,9 +8,12 @@ import io.github.taz03.jia.responses.InstagramResponse;
 /**
  * Represents an Instagram set gender request, used to set gender.
  * <br><br>
- * Endpoint: <i>/accounts/set_gender/</i>
+ * Endpoint: <i>{@value PATH}</i>
  */
 public final class SetGenderRequest extends InstagramPostRequest<InstagramResponse> {
+    private static final Class<InstagramResponse> RESPONSE_CLASS = InstagramResponse.class;
+    private static final String PATH = "/api/v1/accounts/set_gender/";
+
     public static enum Gender {
         MALE(1),
         FEMALE(2),
@@ -26,9 +29,6 @@ public final class SetGenderRequest extends InstagramPostRequest<InstagramRespon
             return code;
         }
     }
-
-    private static final Class<InstagramResponse> RESPONSE_CLASS = InstagramResponse.class;
-    private static final String PATH = "/accounts/set_gender/";
 
     /**
      * Creates a set gender request for provided gender.
