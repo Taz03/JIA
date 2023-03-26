@@ -7,6 +7,7 @@ import io.github.taz03.jia.requests.InstagramRequest;
 import io.github.taz03.jia.requests.accounts.LoginRequest;
 import io.github.taz03.jia.requests.accounts.TwoFactorLoginRequest;
 import io.github.taz03.jia.requests.qe.QeSyncRequest;
+import io.github.taz03.jia.requests.rupload.RuploadIgphotoRequest;
 import io.github.taz03.jia.responses.InstagramResponse;
 import io.github.taz03.jia.responses.accounts.LoginResponse;
 
@@ -139,6 +140,10 @@ public final class InstagramClient {
         return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
             .thenApply(response -> {
                 response.headers().firstValue("ig-set-authorization").ifPresent(this::setAuthorization);
+                if (request instanceof RuploadIgphotoRequest) {
+                    System.out.println(response.request().headers());
+                    System.out.println(response.body());
+                }
                 try {
 					return request.parseResponse(response.body());
 				} catch (JsonProcessingException e) {
