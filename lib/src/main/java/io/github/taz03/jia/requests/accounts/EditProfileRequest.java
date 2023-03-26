@@ -8,9 +8,11 @@ import io.github.taz03.jia.responses.users.UserResponse;
 /**
  * Represents an Instagram edit profile request, used to edit profile data such as username, phone number, etc.
  * <br><br>
- * Endpoint: <i>/accounts/edit_profile/</i>
+ * Endpoint: <i>{@value PATH}</i>
  */
 public final class EditProfileRequest extends InstagramPostRequest<UserResponse> {
+    private static final String PATH = "/api/v1/accounts/edit_profile/";
+
 	/**
      * Creates an Instagram edit profile request.
      *
@@ -22,7 +24,7 @@ public final class EditProfileRequest extends InstagramPostRequest<UserResponse>
 	 * @param externalUrl New external url to set
 	 */
 	public EditProfileRequest(String name, String biography, String username, String phoneNumber, String email, String externalUrl) {
-		super(UserResponse.class, "/accounts/edit_profile/", null, Map.of(
+		super(UserResponse.class, PATH, null, Map.of(
             "first_name", name,
             "biography", biography,
             "username", username,
