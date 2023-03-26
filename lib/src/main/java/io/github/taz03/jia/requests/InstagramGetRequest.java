@@ -34,8 +34,8 @@ public abstract class InstagramGetRequest<T extends InstagramResponse> extends I
 
 	@Override
 	public HttpRequest formRequest(InstagramClient client) {
-        return HttpRequest.newBuilder(URI.create(this.getUrl()))
-            .headers(InstagramRequest.getHeaders(client))
+        return HttpRequest.newBuilder(URI.create(super.getUrl()))
+            .headers(super.makeHeaderArray(super.getHeaders(client)))
             .GET()
             .build();
 	}

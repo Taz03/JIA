@@ -6,6 +6,7 @@ import io.github.taz03.jia.utils.UrlUtils;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublisher;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  * Represents an Instagram POST request.
  */
 public abstract class InstagramPostRequest<T extends InstagramResponse> extends InstagramRequest<T> {
-    private String body = "";
+    private final BodyPublisher bodyPublisher;
 
     /**
      * Constructs an Insatagram POST request wtih specified response type and path.
@@ -22,7 +23,7 @@ public abstract class InstagramPostRequest<T extends InstagramResponse> extends 
      * @param path         The path of the API endpoint that the client wants to access
      */
 	protected InstagramPostRequest(Class<T> responseType, String path) {
-		super(responseType, path);
+		this(responseType, path, null);
 	}
 
     /**
@@ -33,7 +34,7 @@ public abstract class InstagramPostRequest<T extends InstagramResponse> extends 
      * @param queries      The queries to send
      */
 	protected InstagramPostRequest(Class<T> responseType, String path, Map<String, Object> queries) {
-		super(responseType, path, queries);
+		this(responseType, path, queries, Map.of());
 	}
 
 	/**
@@ -46,14 +47,27 @@ public abstract class InstagramPostRequest<T extends InstagramResponse> extends 
 	 */
 	protected InstagramPostRequest(Class<T> responseType, String path, Map<String, Object> queries, Map<String, Object> payload) {
 		super(responseType, path, queries);
-        this.body = UrlUtils.makeBody(payload);
+        this.bodyPublisher = BodyPublishers.ofString(UrlUtils.makeBody(payload));
 	}
+
+	/**
+     * Constructs an Insatagram POST request wtih specified response type, path, query parameters and body.
+     *
+     * @param responseType  Response type to parse the response json into
+     * @param path          The path of the API endpoint that the client wants to access
+     * @param queries       The queries to send
+	 * @param bodyPublisher Custom body to send
+	 */
+	protected InstagramPostRequest(Class<T> responseType, String path, Map<String, Object> queries, BodyPublisher bodyPublisher) {
+        super(responseType, path, queries);
+        this.bodyPublisher = bodyPublisher;
+    }
 
     @Override
     public HttpRequest formRequest(InstagramClient client) {
-        return HttpRequest.newBuilder(URI.create(this.getUrl()))
-            .headers(InstagramRequest.getHeaders(client))
-            .POST(BodyPublishers.ofString(body))
+        return HttpRequest.newBuilder(URI.create(getUrl()))
+            .headers(makeHeaderArray(getHeaders(client)))
+            .POST(bodyPublisher)
             .build();
     }
 }
