@@ -10,9 +10,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import io.github.taz03.jia.InstagramClient;
 import io.github.taz03.jia.requests.InstagramPostRequest;
-import io.github.taz03.jia.responses.InstagramResponse;
+import io.github.taz03.jia.responses.rupload.RuploadIgphotoResponse;
 
-public final class RuploadIgphotoRequest extends InstagramPostRequest<InstagramResponse> {
+public final class RuploadIgphotoRequest extends InstagramPostRequest<RuploadIgphotoResponse> {
     private final byte[] array;
     private final String imgType;
 
@@ -21,7 +21,7 @@ public final class RuploadIgphotoRequest extends InstagramPostRequest<InstagramR
     }
 
 	public RuploadIgphotoRequest(byte[] array, String imgType) {
-		super(InstagramResponse.class, "/rupload_igphoto/" + createName(), null, BodyPublishers.ofByteArray(array));
+		super(RuploadIgphotoResponse.class, "/rupload_igphoto/" + createName(), null, BodyPublishers.ofByteArray(array));
         this.array = array;
         this.imgType = imgType;
 	}
@@ -33,7 +33,7 @@ public final class RuploadIgphotoRequest extends InstagramPostRequest<InstagramR
 
         Map<String, Object> headers = new HashMap<>();
         headers.putAll(super.getHeaders(client));
-        headers.put("Content-Type", "application/octet-stream");
+        headers.put("X-Instagram-Rupload-Params", "{\"upload_id\":\"%s\",\"media_type\":\"1\"}".formatted(name.split("_0_")[0]));
         headers.put("X-Entity-Name", name);
         headers.put("X-Entity-Length", array.length);
         headers.put("X-Entity-Type", "image/" + imgType);
