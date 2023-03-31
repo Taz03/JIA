@@ -7,14 +7,17 @@ import io.github.taz03.jia.responses.accounts.LoginResponse;
 
 /**
  * Represents an Instagram login request, used to login into an users account with two factor authorization.
- * <br><br>
- * Endpoint: <i>{@value PATH}</i>
  */
 public final class TwoFactorLoginRequest extends InstagramPostRequest<LoginResponse> {
-    private static final String PATH = "/api/v1/accounts/two_factor_login/";
-
+	/**
+     * Creates an Instagram login request.
+     *
+	 * @param username            Instagram username
+	 * @param verificationCode    two factor verification code
+	 * @param twoFactorIdentifier login identifier
+	 */
 	public TwoFactorLoginRequest(String username, String verificationCode, String twoFactorIdentifier) {
-		super(LoginResponse.class, PATH, null, Map.of(
+		super(LoginResponse.class, "/api/v1/accounts/two_factor_login/", null, Map.of(
             "username", username,
             "verification_code", verificationCode,
             "two_factor_identifier", twoFactorIdentifier,

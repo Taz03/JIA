@@ -7,12 +7,9 @@ import io.github.taz03.jia.responses.InstagramResponse;
 
 /**
  * Represents an Instagram set gender request, used to set gender.
- * <br><br>
- * Endpoint: <i>{@value PATH}</i>
  */
 public final class SetGenderRequest extends InstagramPostRequest<InstagramResponse> {
     private static final Class<InstagramResponse> RESPONSE_CLASS = InstagramResponse.class;
-    private static final String PATH = "/api/v1/accounts/set_gender/";
 
     public static enum Gender {
         MALE(1),
@@ -36,7 +33,7 @@ public final class SetGenderRequest extends InstagramPostRequest<InstagramRespon
      * @param gender The new gender to set
      */
     public SetGenderRequest(Gender gender) {
-        super(RESPONSE_CLASS, PATH, null, payload(gender.getCode(), ""));
+        super(RESPONSE_CLASS, "/api/v1/accounts/set_gender/", null, payload(gender.getCode(), ""));
     }
 
     /**
@@ -45,7 +42,7 @@ public final class SetGenderRequest extends InstagramPostRequest<InstagramRespon
      * @param customGender The new custom gender to set
      */
     public SetGenderRequest(String customGender) {
-        super(RESPONSE_CLASS, PATH, null, payload(4, customGender));
+        super(RESPONSE_CLASS, "/api/v1/accounts/set_gender/", null, payload(4, customGender));
     }
 
     private static Map<String, Object> payload(int genderCode, String customGender) {
