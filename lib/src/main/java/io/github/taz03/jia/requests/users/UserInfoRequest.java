@@ -22,6 +22,6 @@ public final class UserInfoRequest extends InstagramGetRequest<UserResponse> {
      * @param username username of the user to info about
      */
     public UserInfoRequest(String username) {
-        super(UserResponse.class, "/api/v1/users/" + username + "/usernameinfo");
+        super(UserResponse.class, "/api/v1/users/" + username + "/usernameinfo/");
     }
 }

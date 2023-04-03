@@ -11,7 +11,7 @@ public final class Profile {
     private String fullName;
     @JsonProperty("is_private")
     private boolean isPrivate;
-    @JsonProperty("profile_pid_url")
+    @JsonProperty("profile_pic_url")
     private String profileUrl;
     @JsonProperty("profile_pic_id")
     private String profileId;
