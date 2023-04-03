@@ -11,7 +11,7 @@ import io.github.taz03.jia.responses.fbsearch.AccountSerpResponse;
 public final class AccountSerpTest {
     @Test
     public void accountSerpTest() throws Exception {
-        AccountSerpRequest request = new AccountSerpRequest("instagram");
+        AccountSerpRequest request = new AccountSerpRequest(client.getUsername());
         AccountSerpResponse response = client.sendRequest(request).get();
 
         assertEquals("ok", response.getStatus());

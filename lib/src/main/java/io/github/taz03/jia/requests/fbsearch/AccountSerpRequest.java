@@ -29,7 +29,7 @@ public final class AccountSerpRequest extends InstagramGetRequest<AccountSerpRes
      * @param query the serach query
      */
     public AccountSerpRequest(String query) {
-        this(query, null);
+        this(query, "");
     }
 
 	/**
