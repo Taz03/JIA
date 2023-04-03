@@ -1,9 +1,7 @@
 package io.github.taz03.jia.responses.models.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public final class Profile {
     @JsonProperty("username")
     private String username;
