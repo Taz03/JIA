@@ -1,27 +1,27 @@
-package io.github.taz03.jia.responses.fbsearch;
+package io.github.taz03.jia.responses.users;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.github.taz03.jia.responses.InstagramResponse;
-import io.github.taz03.jia.responses.models.user.Profile;
+import io.github.taz03.jia.responses.models.user.SearchProfile;
 
-public final class AccountSerpResponse extends InstagramResponse {
+public final class SearchResponse extends InstagramResponse {
     @JsonProperty("num_results")
     private int results;
     @JsonProperty("users")
-    private List<Profile> profiles;
+    private List<SearchProfile> profiles;
     @JsonProperty("has_more")
     private boolean hasMore;
-    @JsonProperty("page_token")
-    private String pageToken;
+    @JsonProperty("rank_token")
+    private String rankToken;
 
     public int getResults() {
         return results;
     }
 
-    public List<Profile> getProfiles() {
+    public List<SearchProfile> getProfiles() {
         return profiles;
     }
 
@@ -29,7 +29,7 @@ public final class AccountSerpResponse extends InstagramResponse {
         return hasMore;
     }
 
-    public String getPageToken() {
-        return pageToken;
+    public String getRankToken() {
+        return rankToken;
     }
 }
