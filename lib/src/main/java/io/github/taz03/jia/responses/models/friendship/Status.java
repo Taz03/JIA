@@ -1,7 +1,9 @@
 package io.github.taz03.jia.responses.models.friendship;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public final class Status {
     @JsonProperty("following")
     private boolean following;
