@@ -1,17 +1,17 @@
-package io.github.taz03.jia.users;
+package io.github.taz03.jia.tags;
 
 import static io.github.taz03.jia.TestProxy.client;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import io.github.taz03.jia.requests.users.SearchRequest;
-import io.github.taz03.jia.responses.users.SearchResponse;
+import io.github.taz03.jia.requests.tags.SearchRequest;
+import io.github.taz03.jia.responses.tags.SearchResponse;
 
 public final class SearchTest {
     @Test
-    public void usersSearchTest() throws Exception {
-        SearchRequest request = new SearchRequest(client.getUsername());
+    public void tagsSearchTest() throws Exception {
+        SearchRequest request = new SearchRequest("instagram");
         SearchResponse response = client.sendRequest(request).get();
 
         assertEquals("ok", response.getStatus());
