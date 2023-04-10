@@ -103,8 +103,7 @@ public final class InstagramClient {
      * @return A LoginResponse object containing information about the user and their session.
      */
     public LoginResponse login(Supplier<String> verificationCodeSupplier) throws Exception {
-        HttpResponse<Void> qeResponse = httpClient.send(new QeSyncRequest().formRequest(this),
-                BodyHandlers.discarding());
+        HttpResponse<Void> qeResponse = httpClient.send(new QeSyncRequest().formRequest(this), BodyHandlers.discarding());
 
         HttpHeaders headers = qeResponse.headers();
         String encryptionId = headers.firstValue("ig-set-password-encryption-key-id").get();
@@ -124,7 +123,7 @@ public final class InstagramClient {
             loginHttpResponse.headers().firstValue("ig-set-authorization").ifPresent(this::setAuthorization);
         }
 
-        this.pk = loginResponse.getUser().getProfile().getPk();
+        if (loginResponse.getStatus().equals("ok")) this.pk = loginResponse.getUser().getProfile().getPk();
         return loginResponse;
     }
 
