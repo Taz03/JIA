@@ -114,7 +114,7 @@ publishing {
 }
 
 signing {
-    sign configurations.archives
+    sign publishing.publications.mavenJava
 }
 
 javadoc {
