@@ -4,12 +4,5 @@
 # Ignore Gradle build output directory
 build
 
-# Eclipse
-bin
-.settings
-
-# IntelliJ
-.idea
-
 # User credentials
 user.json
