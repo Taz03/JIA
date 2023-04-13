@@ -10,8 +10,35 @@ import io.github.taz03.jia.responses.InstagramResponse;
 public final class LoginResponse extends InstagramResponse {
     @JsonProperty("logged_in_user")
     private User user;
+    private String androidId;
+    private String userAgent;
+    private String authToken;
 
     public User getUser() {
         return user;
+    }
+
+    public String getAndroidId(){
+        return androidId;
+    }
+
+    public String getAuthorization(){
+        return authToken;
+    }
+
+    public String getUserAgent(){
+        return userAgent;
+    }
+
+    public void setAuthorization(String token){
+        this.authToken = token;
+    }
+
+    public void setAndroidId(String id){
+        this.androidId = id;
+    }
+
+    public void setUseragent(String agent){
+        this.userAgent = agent;
     }
 }

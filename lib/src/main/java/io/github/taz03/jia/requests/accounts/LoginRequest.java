@@ -16,11 +16,11 @@ public final class LoginRequest extends InstagramPostRequest<LoginResponse> {
 	 * @param encryptedPassword Instagram encrypted password
 	 * @throws Exception        If the passowrd is invalid
 	 */
-	public LoginRequest(String username, String encryptedPassword) throws Exception {
+	public LoginRequest(String username, String encryptedPassword,String id) throws Exception {
 		super(LoginResponse.class, "/api/v1/accounts/login/", null, Map.of(
             "username", username,
             "enc_password", encryptedPassword,
-            "device_id", "android-a25a335851cf770b",
+            "device_id", id,
             "login_attempt_account", 0
         ));
 	}

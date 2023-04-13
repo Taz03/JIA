@@ -80,7 +80,7 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
     protected Map<String, Object> getHeaders(InstagramClient client) {
         return Map.of(
             "Content-Type", "application/x-www-form-urlencoded; charset=UTF-8",
-            "User-Agent", "Instagram 265.0.0.19.301 Android (33/13; 374dpi; 1080x2224; Google/google; sdk_gphone64_x86_64; emu64x; ranchu; en_US; 436384448)",
+            "User-Agent", client.getUserAgent(),
             "Authorization", client.getAuthorization() == null ? "" : client.getAuthorization()
         );
     }

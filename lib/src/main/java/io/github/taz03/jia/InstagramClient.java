@@ -11,7 +11,10 @@ import io.github.taz03.jia.responses.InstagramResponse;
 import io.github.taz03.jia.responses.accounts.LoginResponse;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse;
@@ -24,13 +27,15 @@ import java.security.SecureRandom;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,6 +43,8 @@ public final class InstagramClient {
     private static final Logger log = LoggerFactory.getLogger(InstagramClient.class);
 
     private final String username, password;
+    private String androidId;
+    private String userAgent;
     private String authorization;
     private long pk;
     private HttpClient httpClient = HttpClient.newHttpClient();
@@ -49,20 +56,40 @@ public final class InstagramClient {
      * @param password The instagram password corresponding to the username provided
      */
     public InstagramClient(String username, String password) {
-        this(username, password, null);
+        this.username = username;
+        this.password = password;
+    }
+
+    public InstagramClient(String user,String pass,String id,String agent){
+        this.username = user;
+        this.password = pass;
+        this.userAgent = agent;
+        this.androidId = id;
+    }
+
+    private void configureDeviceIds() throws MalformedURLException, IOException {
+        var id = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
+        this.androidId += "android-" + id.substring(id.length() - 16);
+        
+        var random = new Random().nextInt(1783);
+        var scanner = new Scanner(new URL("https://raw.githubusercontent.com/Taz03/JIA/main/user-agents.txt").openStream());
+        for (int i = 0; i < random; i++) {
+            scanner.skip("");
+            userAgent = scanner.nextLine();
+        }
     }
 
     /**
      * Makes an Instagram client logined.
-     *
-     * @param username      The instagram username
-     * @param password      The instagram password corresponding to the username provided
+     * @param androidId The andorid id that was used in intial login
+     * @param userAgent The user agent string that was used while logging initally.
      * @param authorization The authorization token to corresponding to the username and password provided
      */
-    public InstagramClient(String username, String password, String authorization) {
-        this.username = username;
-        this.password = password;
+    public InstagramClient(String username,String authorization,String userAgent) {
         this.authorization = authorization;
+        this.userAgent = userAgent;
+        this.username = "";
+        this.password = "";
     }
 
     public String getUsername() {
@@ -79,6 +106,14 @@ public final class InstagramClient {
 
     public long getPk() {
         return pk;
+    }
+
+    public String getUserAgent(){
+        return userAgent;
+    }
+
+    public String getAndroidId(){
+        return androidId;
     }
 
     public void setAuthorization(String authorization) {
@@ -103,6 +138,10 @@ public final class InstagramClient {
      * @return A LoginResponse object containing information about the user and their session.
      */
     public LoginResponse login(Supplier<String> verificationCodeSupplier) throws Exception {
+        if (userAgent == null || androidId == null){
+            configureDeviceIds();
+        }
+        
         HttpResponse<Void> qeResponse = httpClient.send(new QeSyncRequest().formRequest(this), BodyHandlers.discarding());
 
         HttpHeaders headers = qeResponse.headers();
@@ -111,7 +150,7 @@ public final class InstagramClient {
 
         String encryptedPassword = encryptPassword(password, encryptionId, encryptionKey);
 
-        LoginRequest loginRequest = new LoginRequest(this.username, encryptedPassword);
+        LoginRequest loginRequest = new LoginRequest(this.username, encryptedPassword,androidId);
         HttpResponse<String> loginHttpResponse = httpClient.send(loginRequest.formRequest(this), BodyHandlers.ofString());
 
         LoginResponse loginResponse;
@@ -124,6 +163,10 @@ public final class InstagramClient {
         }
 
         if (loginResponse.getStatus().equals("ok")) this.pk = loginResponse.getUser().getProfile().getPk();
+
+        loginResponse.setAndroidId(androidId);
+        loginResponse.setAuthorization(authorization);
+        loginResponse.setUseragent(userAgent);
         return loginResponse;
     }
 
