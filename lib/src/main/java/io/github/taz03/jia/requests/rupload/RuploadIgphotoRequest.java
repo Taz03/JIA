@@ -41,8 +41,7 @@ public final class RuploadIgphotoRequest extends InstagramPostRequest<RuploadIgp
         String[] url = this.getUrl().split("/");
         String name = url[url.length - 1];
 
-        Map<String, Object> headers = new HashMap<>();
-        headers.putAll(super.getHeaders(client));
+        Map<String, Object> headers = new HashMap<>(super.getHeaders(client));
         headers.put("X-Instagram-Rupload-Params", "{\"upload_id\":\"%s\",\"media_type\":\"1\"}".formatted(name));
         headers.put("X-Entity-Name", name);
         headers.put("X-Entity-Length", array.length);

@@ -11,14 +11,14 @@ import io.github.taz03.jia.responses.InstagramResponse;
 public final class SetGenderRequest extends InstagramPostRequest<InstagramResponse> {
     private static final Class<InstagramResponse> RESPONSE_CLASS = InstagramResponse.class;
 
-    public static enum Gender {
+    public enum Gender {
         MALE(1),
         FEMALE(2),
         PREFER_NOT_TO_SAY(3);
 
         private final int code; // gender code instagram understands
 
-        private Gender(int code) {
+        Gender(int code) {
             this.code = code;
         }
 

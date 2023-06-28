@@ -6,7 +6,7 @@ import io.github.taz03.jia.requests.InstagramPostRequest;
 import io.github.taz03.jia.responses.accounts.LoginResponse;
 
 /**
- * Represents an Instagram login request, used to login into an users account with two factor authorization.
+ * Represents an Instagram login request, used to log in into a users account with two-factor authorization.
  */
 public final class TwoFactorLoginRequest extends InstagramPostRequest<LoginResponse> {
 	/**

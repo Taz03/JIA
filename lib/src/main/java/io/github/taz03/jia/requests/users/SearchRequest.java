@@ -26,7 +26,7 @@ public final class SearchRequest extends InstagramGetRequest<SearchResponse> {
     /**
      * Creates an Instagram users search request.
      *
-     * @param query the serach query
+     * @param query the search query
      */
     public SearchRequest(String query) {
         this(query, "");
@@ -36,7 +36,7 @@ public final class SearchRequest extends InstagramGetRequest<SearchResponse> {
      * Creates an Instagram users search request.
      *
 	 * @param query     the search query
-	 * @param rankToken the rank_token recieved in previous response page
+	 * @param rankToken the rank_token received in previous response page
 	 */
 	public SearchRequest(String query, String rankToken) {
 		super(SearchResponse.class, "/api/v1/users/search/", Map.of(

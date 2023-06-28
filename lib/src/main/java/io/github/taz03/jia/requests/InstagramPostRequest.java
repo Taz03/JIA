@@ -17,7 +17,7 @@ public abstract class InstagramPostRequest<T extends InstagramResponse> extends 
     private final BodyPublisher bodyPublisher;
 
     /**
-     * Constructs an Insatagram POST request wtih specified response type and path.
+     * Constructs an Instagram POST request with specified response type and path.
      *
      * @param responseType Response type to parse the response json into
      * @param path         The path of the API endpoint that the client wants to access
@@ -27,7 +27,7 @@ public abstract class InstagramPostRequest<T extends InstagramResponse> extends 
 	}
 
     /**
-     * Constructs an Insatagram POST request wtih specified response type, path and query parameters.
+     * Constructs an Instagram POST request with specified response type, path and query parameters.
      *
      * @param responseType Response type to parse the response json into
      * @param path         The path of the API endpoint that the client wants to access
@@ -38,7 +38,7 @@ public abstract class InstagramPostRequest<T extends InstagramResponse> extends 
 	}
 
 	/**
-     * Constructs an Insatagram POST request wtih specified response type, path, query parameters and payload data.
+     * Constructs an Instagram POST request with specified response type, path, query parameters and payload data.
      *
      * @param responseType Response type to parse the response json into
      * @param path         The path of the API endpoint that the client wants to access
@@ -51,7 +51,7 @@ public abstract class InstagramPostRequest<T extends InstagramResponse> extends 
 	}
 
 	/**
-     * Constructs an Insatagram POST request wtih specified response type, path, query parameters and body.
+     * Constructs an Instagram POST request with specified response type, path, query parameters and body.
      *
      * @param responseType  Response type to parse the response json into
      * @param path          The path of the API endpoint that the client wants to access

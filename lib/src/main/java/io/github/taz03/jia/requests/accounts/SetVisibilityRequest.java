@@ -4,16 +4,16 @@ import io.github.taz03.jia.requests.InstagramPostRequest;
 import io.github.taz03.jia.responses.users.UserResponse;
 
 /**
- * Represents an Instagram set visiblity request, used to set visiblity of Instagram account(public or private).
+ * Represents an Instagram set visibility request, used to set visibility of Instagram account(public or private).
  */
 public final class SetVisibilityRequest extends InstagramPostRequest<UserResponse> {
-    public static enum Visiblity {
+    public enum Visibility {
         PUBLIC("set_public/"),
         PRIVATE("set_private/");
 
         private final String path;
 
-        private Visiblity(String path) {
+        Visibility(String path) {
             this.path = path;
         }
 
@@ -23,11 +23,11 @@ public final class SetVisibilityRequest extends InstagramPostRequest<UserRespons
     }
     
 	/**
-     * Creates an Instagram set visiblity request.
+     * Creates an Instagram set visibility request.
      *
-	 * @param visiblity The account visiblity to set
+	 * @param visibility The account visibility to set
 	 */
-	public SetVisibilityRequest(Visiblity visiblity) {
-		super(UserResponse.class, "/api/v1/accounts/" + visiblity.getPath());
+	public SetVisibilityRequest(Visibility visibility) {
+		super(UserResponse.class, "/api/v1/accounts/" + visibility.getPath());
 	}
 }

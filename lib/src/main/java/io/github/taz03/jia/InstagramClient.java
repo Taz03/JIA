@@ -43,7 +43,7 @@ public final class InstagramClient {
     private HttpClient httpClient = HttpClient.newHttpClient();
 
     /**
-     * Makes an Intagram clinet, not logined.
+     * Makes an Instagram client (not login).
      *
      * @param username The instagram username
      * @param password The instagram password corresponding to the username provided
@@ -53,7 +53,7 @@ public final class InstagramClient {
     }
 
     /**
-     * Makes an Instagram client logined.
+     * Makes an Instagram client (login).
      *
      * @param username      The instagram username
      * @param password      The instagram password corresponding to the username provided
@@ -98,7 +98,7 @@ public final class InstagramClient {
      * Logs in a user with their username and password.
      * <br>
      * If two-factor authentication is required, a verification code must be provided through the verificationCodeSupplier parameter.
-     * 
+     *
      * @param verificationCodeSupplier A Supplier that provides a verification code if two-factor authentication is required.
      * @return A LoginResponse object containing information about the user and their session.
      */
@@ -132,7 +132,7 @@ public final class InstagramClient {
      *
      * @param <T>     Response type from instagram
      * @param request Request to send
-     * @return        CompletableFuture of response, throws {@link UncheckedIOException} if json parsing fails 
+     * @return        CompletableFuture of response, throws {@link UncheckedIOException} if json parsing fails
      */
     public <T extends InstagramResponse> CompletableFuture<T> sendRequest(InstagramRequest<T> request) {
         return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
