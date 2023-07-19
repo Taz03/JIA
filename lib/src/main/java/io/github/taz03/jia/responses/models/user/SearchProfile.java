@@ -20,4 +20,12 @@ public final class SearchProfile {
     public Status getFriendshipStatus() {
         return friendshipStatus;
     }
+
+    @Override
+    public String toString() {
+        return "SearchProfile{" +
+                "profile=" + profile +
+                ", friendshipStatus=" + friendshipStatus +
+                '}';
+    }
 }

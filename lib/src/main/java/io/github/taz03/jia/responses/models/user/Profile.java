@@ -53,4 +53,18 @@ public final class Profile {
     public long getPk() {
         return pk;
     }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "username='" + username + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", isPrivate=" + isPrivate +
+                ", profileUrl='" + profileUrl + '\'' +
+                ", profileId='" + profileId + '\'' +
+                ", isVerified=" + isVerified +
+                ", hasAnonymousProfile=" + hasAnonymousProfile +
+                ", pk=" + pk +
+                '}';
+    }
 }

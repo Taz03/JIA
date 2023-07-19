@@ -85,6 +85,17 @@ public final class InstagramClient {
         this.authorization = authorization;
     }
 
+    @Override
+    public String toString() {
+        return "InstagramClient{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", authorization='" + authorization + '\'' +
+                ", pk=" + pk +
+                ", httpClient=" + httpClient +
+                '}';
+    }
+
     /**
      * Logs in a user with their username and password.
      *
@@ -201,4 +212,6 @@ public final class InstagramClient {
         // Return final string formatted as "#PWD_INSTAGRAM:%s:%s:%s", with version, timestamp and encrypted data
         return String.format("#PWD_INSTAGRAM:%s:%s:%s", versionNumber, time, Base64.getEncoder().encodeToString(out.toByteArray()));
     }
+
+
 }

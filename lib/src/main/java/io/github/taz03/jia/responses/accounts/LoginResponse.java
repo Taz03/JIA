@@ -14,4 +14,11 @@ public final class LoginResponse extends InstagramResponse {
     public User getUser() {
         return user;
     }
+
+    @Override
+    public String toString() {
+        return "LoginResponse{" +
+                "user=" + user +
+                '}';
+    }
 }

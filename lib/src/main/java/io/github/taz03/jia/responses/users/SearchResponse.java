@@ -34,4 +34,14 @@ public final class SearchResponse extends InstagramResponse {
     public String getRankToken() {
         return rankToken;
     }
+
+    @Override
+    public String toString() {
+        return "SearchResponse{" +
+                "results=" + results +
+                ", profiles=" + profiles +
+                ", hasMore=" + hasMore +
+                ", rankToken='" + rankToken + '\'' +
+                '}';
+    }
 }

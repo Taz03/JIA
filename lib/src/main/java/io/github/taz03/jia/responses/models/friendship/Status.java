@@ -41,4 +41,16 @@ public final class Status {
     public boolean hasOutgoingRequest() {
         return outgoingRequest;
     }
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "following=" + following +
+                ", incomingRequest=" + incomingRequest +
+                ", isBestie=" + isBestie +
+                ", isPrivate=" + isPrivate +
+                ", isRestricted=" + isRestricted +
+                ", outgoingRequest=" + outgoingRequest +
+                '}';
+    }
 }

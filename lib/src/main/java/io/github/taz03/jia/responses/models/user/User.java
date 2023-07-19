@@ -68,4 +68,20 @@ public final class User {
     public int getAccountType() {
         return accountType;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "profile=" + profile +
+                ", isBusiness=" + isBusiness +
+                ", mediaCount=" + mediaCount +
+                ", followerCount=" + followerCount +
+                ", followingCount=" + followingCount +
+                ", biography='" + biography + '\'' +
+                ", externalUrl='" + externalUrl + '\'' +
+                ", profilePictureVersions=" + profilePictureVersions +
+                ", profilePicture=" + profilePicture +
+                ", accountType=" + accountType +
+                '}';
+    }
 }
