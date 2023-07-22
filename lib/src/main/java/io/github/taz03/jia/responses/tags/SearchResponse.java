@@ -28,4 +28,13 @@ public final class SearchResponse extends InstagramResponse {
     public List<SearchTag> getResults() {
         return results;
     }
+
+    @Override
+    public String toString() {
+        return "SearchResponse{" +
+                "hasMore=" + hasMore +
+                ", rankToken='" + rankToken + '\'' +
+                ", results=" + results +
+                '}';
+    }
 }

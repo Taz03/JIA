@@ -23,4 +23,13 @@ public final class ProfilePicture {
     public int getHeight() {
         return height;
     }
+
+    @Override
+    public String toString() {
+        return "ProfilePicture{" +
+                "url='" + url + '\'' +
+                ", width=" + width +
+                ", height=" + height +
+                '}';
+    }
 }

@@ -85,6 +85,17 @@ public final class InstagramClient {
         this.authorization = authorization;
     }
 
+    @Override
+    public String toString() {
+        return "InstagramClient{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", authorization='" + authorization + '\'' +
+                ", pk=" + pk +
+                ", httpClient=" + httpClient +
+                '}';
+    }
+
     /**
      * Logs in a user with their username and password.
      *

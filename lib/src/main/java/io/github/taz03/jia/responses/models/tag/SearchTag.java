@@ -41,4 +41,16 @@ public final class SearchTag {
     public boolean isUseDefaultAvatar() {
         return useDefaultAvatar;
     }
+
+    @Override
+    public String toString() {
+        return "SearchTag{" +
+                "formattedMediaCount='" + formattedMediaCount + '\'' +
+                ", id=" + id +
+                ", mediaCount=" + mediaCount +
+                ", profilePictureUrl='" + profilePictureUrl + '\'' +
+                ", searchResultSubtitle='" + searchResultSubtitle + '\'' +
+                ", useDefaultAvatar=" + useDefaultAvatar +
+                '}';
+    }
 }

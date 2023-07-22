@@ -14,4 +14,11 @@ public final class UserResponse extends InstagramResponse {
     public User getUser() {
         return user;
     }
+
+    @Override
+    public String toString() {
+        return "UserResponse{" +
+                "user=" + user +
+                '}';
+    }
 }

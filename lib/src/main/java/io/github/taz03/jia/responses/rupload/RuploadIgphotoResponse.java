@@ -13,4 +13,11 @@ public final class RuploadIgphotoResponse extends InstagramResponse {
     public String getUploadId() {
         return uploadId;
     }
+
+    @Override
+    public String toString() {
+        return "RuploadIgphotoResponse{" +
+                "uploadId='" + uploadId + '\'' +
+                '}';
+    }
 }

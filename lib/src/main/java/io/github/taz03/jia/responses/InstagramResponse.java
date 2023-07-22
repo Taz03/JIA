@@ -47,4 +47,17 @@ public class InstagramResponse {
     public String getCheckpointUrl() {
         return checkpointUrl;
     }
+
+    @Override
+    public String toString() {
+        return "InstagramResponse{" +
+                "status='" + status + '\'' +
+                ", message='" + message + '\'' +
+                ", isSpam=" + isSpam +
+                ", feedbackTitle='" + feedbackTitle + '\'' +
+                ", feedbackMessage='" + feedbackMessage + '\'' +
+                ", errorType='" + errorType + '\'' +
+                ", checkpointUrl='" + checkpointUrl + '\'' +
+                '}';
+    }
 }
