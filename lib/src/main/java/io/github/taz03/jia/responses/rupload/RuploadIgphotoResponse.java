@@ -1,9 +1,9 @@
 package io.github.taz03.jia.responses.rupload;
 
+import io.github.taz03.jia.responses.InstagramResponse;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import io.github.taz03.jia.responses.InstagramResponse;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class RuploadIgphotoResponse extends InstagramResponse {

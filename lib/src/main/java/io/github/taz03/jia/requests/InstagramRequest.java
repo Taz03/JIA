@@ -1,16 +1,15 @@
 package io.github.taz03.jia.requests;
 
 import java.net.http.HttpRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.taz03.jia.InstagramClient;
 import io.github.taz03.jia.responses.InstagramResponse;
 import io.github.taz03.jia.utils.UrlUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Represents a generic Instagram request.

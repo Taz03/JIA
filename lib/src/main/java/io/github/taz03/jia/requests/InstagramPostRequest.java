@@ -1,14 +1,14 @@
 package io.github.taz03.jia.requests;
 
-import io.github.taz03.jia.InstagramClient;
-import io.github.taz03.jia.responses.InstagramResponse;
-import io.github.taz03.jia.utils.UrlUtils;
-
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublisher;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.util.Map;
+
+import io.github.taz03.jia.InstagramClient;
+import io.github.taz03.jia.responses.InstagramResponse;
+import io.github.taz03.jia.utils.UrlUtils;
 
 /**
  * Represents an Instagram POST request.

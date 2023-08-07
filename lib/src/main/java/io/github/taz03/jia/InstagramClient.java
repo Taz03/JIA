@@ -1,15 +1,5 @@
 package io.github.taz03.jia;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.github.taz03.jia.requests.InstagramRequest;
-import io.github.taz03.jia.requests.accounts.LoginRequest;
-import io.github.taz03.jia.requests.accounts.TwoFactorLoginRequest;
-import io.github.taz03.jia.requests.qe.QeSyncRequest;
-import io.github.taz03.jia.responses.InstagramResponse;
-import io.github.taz03.jia.responses.accounts.LoginResponse;
-
 import java.io.ByteArrayOutputStream;
 import java.io.UncheckedIOException;
 import java.net.http.HttpClient;
@@ -30,6 +20,16 @@ import java.util.function.Supplier;
 import javax.crypto.Cipher;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import io.github.taz03.jia.requests.InstagramRequest;
+import io.github.taz03.jia.requests.accounts.LoginRequest;
+import io.github.taz03.jia.requests.accounts.TwoFactorLoginRequest;
+import io.github.taz03.jia.requests.qe.QeSyncRequest;
+import io.github.taz03.jia.responses.InstagramResponse;
+import io.github.taz03.jia.responses.accounts.LoginResponse;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
