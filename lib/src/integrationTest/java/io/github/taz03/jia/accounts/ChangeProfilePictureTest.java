@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
 
-import org.junit.jupiter.api.Test;
-
 import io.github.taz03.jia.requests.accounts.ChangeProfilePictureRequest;
 import io.github.taz03.jia.requests.rupload.RuploadIgphotoRequest;
 import io.github.taz03.jia.responses.rupload.RuploadIgphotoResponse;
 import io.github.taz03.jia.responses.users.UserResponse;
+
+import org.junit.jupiter.api.Test;
 
 public final class ChangeProfilePictureTest {
     @Test

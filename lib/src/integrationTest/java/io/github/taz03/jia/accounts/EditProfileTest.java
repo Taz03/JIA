@@ -1,12 +1,12 @@
 package io.github.taz03.jia.accounts;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static io.github.taz03.jia.TestProxy.*;
-
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.github.taz03.jia.requests.accounts.EditProfileRequest;
 import io.github.taz03.jia.responses.users.UserResponse;
+
+import org.junit.jupiter.api.Test;
 
 public final class EditProfileTest {
     @Test

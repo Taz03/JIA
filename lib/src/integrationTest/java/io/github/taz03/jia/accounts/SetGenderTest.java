@@ -5,13 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
 import io.github.taz03.jia.requests.accounts.SetGenderRequest;
 import io.github.taz03.jia.requests.accounts.SetGenderRequest.Gender;
 import io.github.taz03.jia.responses.InstagramResponse;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public final class SetGenderTest {
     @ParameterizedTest

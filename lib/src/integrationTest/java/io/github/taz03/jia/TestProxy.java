@@ -9,7 +9,7 @@ public final class TestProxy {
     public static User user;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final record User(
+    public record User(
         @JsonProperty("username")
         String username,
         @JsonProperty("password")
