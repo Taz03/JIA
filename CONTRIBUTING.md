@@ -1,9 +1,14 @@
 Thanks for taking the time to contribute to this project.
 
+# How to track and add new Instagram requests
+First, you will have to set up Instagram SSL pinning bypass to see the requests sent by Instagram mobile app, [guide here](https://github.com/Eltion/Instagram-SSL-Pinning-Bypass)
+
+Then you will need to replicate that request in Postman for example let's try to replicate the `/accounts/current_user` GET request
+
 # Code Guidelines
 
 ## Formatting
-Follow [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
+Follow [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html), also see other bits of the code base and write consistent code.
 
 ### Import Order
 All the static imports should be at the top without any new lines between them in this order:-
