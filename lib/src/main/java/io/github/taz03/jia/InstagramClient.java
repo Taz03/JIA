@@ -143,7 +143,7 @@ public final class InstagramClient {
      *
      * @param <T>     Response type from instagram
      * @param request Request to send
-     * @return        CompletableFuture of response, throws {@link UncheckedIOException} if json parsing fails
+     * @return CompletableFuture of response, throws {@link UncheckedIOException} if json parsing fails
      */
     public <T extends InstagramResponse> CompletableFuture<T> sendRequest(InstagramRequest<T> request) {
         return httpClient.sendAsync(request.formRequest(this), BodyHandlers.ofString())
@@ -165,8 +165,8 @@ public final class InstagramClient {
      * @param password      The password to be encrypted
      * @param encryptionId  An identifier for the encryption
      * @param encryptionKey The public key for RSA encryption
-     * @return              A string representation of the encrypted password, including the encryption metadata
-     * @throws Exception    If an error occurs during encryption
+     * @return A string representation of the encrypted password, including the encryption metadata
+     * @throws Exception If an error occurs during encryption
      */
     private static String encryptPassword(String password, String encryptionId, String encryptionKey) throws Exception {
         final int versionNumber = 4; // the encryption format being used, probably to future-proof the encryption process
