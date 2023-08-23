@@ -80,7 +80,7 @@ import org.slf4j.Logger;
 ### Docs
 ```java
     /**
-     * <Description of the method>.
+     * Description of the method.
      *
      * @param param1    Description of param1
      * @param param2    Description of param1
