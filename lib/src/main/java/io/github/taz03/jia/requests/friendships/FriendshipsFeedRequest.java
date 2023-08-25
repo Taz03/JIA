@@ -4,7 +4,7 @@ import io.github.taz03.jia.requests.InstagramGetRequest;
 import io.github.taz03.jia.responses.friendships.FriendshipsFeedResponse;
 
 /**
- * Represents an Instagram user friendships feed, used to get user followers or followings
+ * Represents an Instagram friendships feed request, used to get user's followers or followings
  */
 public final class FriendshipsFeedRequest extends InstagramGetRequest<FriendshipsFeedResponse> {
     /**
