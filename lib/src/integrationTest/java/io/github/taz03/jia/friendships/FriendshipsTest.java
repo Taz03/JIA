@@ -1,13 +1,12 @@
 package io.github.taz03.jia.friendships;
 
+import static io.github.taz03.jia.TestProxy.client;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.concurrent.ExecutionException;
 import io.github.taz03.jia.requests.friendships.FriendshipsFeedRequest;
 import io.github.taz03.jia.responses.friendships.FriendshipsFeedResponse;
 import org.junit.jupiter.api.Test;
-
-import java.util.concurrent.ExecutionException;
-
-import static io.github.taz03.jia.TestProxy.client;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FriendshipsTest {
 
