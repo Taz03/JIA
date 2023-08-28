@@ -6,3 +6,4 @@ build
 
 # User credentials
 user.json
+/lib/src/integrationTest/resources/ClientFile.ser
