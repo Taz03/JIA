@@ -70,6 +70,13 @@ public final class User {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof User)
+            return this.profile.getUsername().equals(((User) obj).profile.getUsername());
+        return (this == obj);
+    }
+
+    @Override
     public String toString() {
         return "User{" +
                 "profile=" + profile +
