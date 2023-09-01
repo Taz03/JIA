@@ -1,6 +1,8 @@
 package io.github.taz03.jia;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
@@ -37,7 +39,7 @@ import org.slf4j.LoggerFactory;
 public final class InstagramClient {
     private static final Logger log = LoggerFactory.getLogger(InstagramClient.class);
 
-    private final String username, password;
+    private String username, password;
     private String authorization;
     private long pk;
     private HttpClient httpClient = HttpClient.newHttpClient();
@@ -64,6 +66,8 @@ public final class InstagramClient {
         this.password = password;
         this.authorization = authorization;
     }
+
+    public InstagramClient() {}
 
     public String getUsername() {
         return username;
@@ -211,5 +215,26 @@ public final class InstagramClient {
 
         // Return final string formatted as "#PWD_INSTAGRAM:%s:%s:%s", with version, timestamp and encrypted data
         return String.format("#PWD_INSTAGRAM:%s:%s:%s", versionNumber, time, Base64.getEncoder().encodeToString(out.toByteArray()));
+    }
+
+    /**
+     * Serializes the InstagramClient
+     *
+     * @param dir -dir where the client will be serialized
+     * @throws IOException
+     */
+    public void serialize(File dir) throws IOException {
+        new ObjectMapper().writeValue(new File(dir, "ClientFile.ser"), this);
+    }
+
+    /**
+     * Deserializes the InstagramClient
+     *
+     * @param dir - dir from the InstagramClient will be deserialized
+     * @return - deserialized InstagramClient
+     * @throws IOException
+     */
+    public static InstagramClient deserialize(File dir) throws IOException {
+        return new ObjectMapper().readValue(new File(dir, "ClientFile.ser"), InstagramClient.class);
     }
 }
