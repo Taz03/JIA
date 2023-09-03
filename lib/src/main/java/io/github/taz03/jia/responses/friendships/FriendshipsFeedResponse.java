@@ -8,11 +8,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FriendshipsFeedResponse extends InstagramResponse {
+public class FriendshipsFeedResponse extends InstagramResponse  {
     @JsonProperty("users")
     private List<User> users;
+    @JsonProperty("next_max_id")
+    private String nextMaxId;
 
     public List<User> getUsers() {
         return users;
     }
+
+    public String getNextMaxId() {
+        return nextMaxId;
+    }
+
 }

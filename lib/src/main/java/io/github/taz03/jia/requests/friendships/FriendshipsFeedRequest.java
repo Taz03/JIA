@@ -6,7 +6,7 @@ import io.github.taz03.jia.responses.friendships.FriendshipsFeedResponse;
 /**
  * Represents an Instagram friendships feed request, used to get user's followers or followings
  */
-public final class FriendshipsFeedRequest extends InstagramGetRequest<FriendshipsFeedResponse> {
+public final class FriendshipsFeedRequest extends InstagramGetRequest<FriendshipsFeedResponse>   {
     /**
      * Creates an Instagram friendships feed request
      
@@ -15,6 +15,17 @@ public final class FriendshipsFeedRequest extends InstagramGetRequest<Friendship
      */
     public FriendshipsFeedRequest(long pk, FriendshipsFeeds action) {
         super(FriendshipsFeedResponse.class, String.format("/api/v1/friendships/%s/%s/", pk, action.name().toLowerCase()));
+    }
+
+    /**
+     * Creates an Instagram friendships feed request with maxId
+
+     * @param pk pk of the user to get friendships of
+     * @param action action of {@link FriendshipsFeeds} to get followers or followings
+     * @param maxId value defines from which page the feed should start
+     */
+    public FriendshipsFeedRequest(long pk, FriendshipsFeeds action, String maxId) {
+        super(FriendshipsFeedResponse.class, String.format("/api/v1/friendships/%s/%s/?max_id=%s&", pk, action.name().toLowerCase(), maxId));
     }
 
     /**
