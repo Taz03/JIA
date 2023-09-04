@@ -8,7 +8,7 @@ import io.github.taz03.jia.responses.tags.SearchResponse;
 /**
  * Represents an Instagram tags search request, used to search for tags.
  * <br><br>
- * To get scroll through the results, use the rank_token got in response of previous page.
+ * To scroll through the results, use the rank_token received in response of the previous request.
  * <br>
  * Example:
  * {@snippet :
