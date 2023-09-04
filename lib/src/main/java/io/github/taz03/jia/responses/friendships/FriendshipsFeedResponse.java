@@ -1,7 +1,8 @@
 package io.github.taz03.jia.responses.friendships;
 
-import io.github.taz03.jia.responses.InstagramResponse;
 import java.util.List;
+
+import io.github.taz03.jia.responses.InstagramResponse;
 import io.github.taz03.jia.responses.models.user.User;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
