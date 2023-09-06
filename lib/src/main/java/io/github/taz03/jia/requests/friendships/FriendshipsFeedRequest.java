@@ -25,7 +25,9 @@ public final class FriendshipsFeedRequest extends InstagramGetRequest<Friendship
      * @param maxId value defines from which page the feed should start
      */
     public FriendshipsFeedRequest(long pk, FriendshipsFeeds action, String maxId) {
-        super(FriendshipsFeedResponse.class, String.format("/api/v1/friendships/%s/%s/?max_id=%s&", pk, action.name().toLowerCase(), maxId));
+        super(FriendshipsFeedResponse.class, String.format("/api/v1/friendships/%d/%s/", pk, action.name().toLowerCase(), Map.of(
+            "max_id", maxId
+        ));
     }
 
     /**
