@@ -11,17 +11,17 @@ import org.junit.jupiter.api.Test;
 public class FriendshipsFeedTest {
     @Test
     public void friendshipsFeedFollowingTest() throws Exception {
-        FriendshipsFeedRequest friendshipsFeedFollowing = new FriendshipsFeedRequest(client.getPk(), FriendshipsFeedRequest.FriendshipsFeeds.FOLLOWING);
-        FriendshipsFeedResponse friendshipsFeedFollowingResponse = client.sendRequest(friendshipsFeedFollowing).get();
+        FriendshipsFeedRequest followingsRequest = new FriendshipsFeedRequest(client.getPk(), FriendshipsFeedRequest.FriendshipsFeeds.FOLLOWING);
+        FriendshipsFeedResponse followingsResponse = client.sendRequest(followingsRequest).get();
 
-        assertEquals("ok", friendshipsFeedFollowingResponse.getStatus());
+        assertEquals("ok", followingsResponse.getStatus());
     }
 
     @Test
     public void friendshipsFeedFollowersTest() throws Exception {
-        FriendshipsFeedRequest friendshipsFeedFollowers = new FriendshipsFeedRequest(client.getPk(), FriendshipsFeedRequest.FriendshipsFeeds.FOLLOWERS);
-        FriendshipsFeedResponse friendshipsFeedFollowersResponse = client.sendRequest(friendshipsFeedFollowers).get();
+        FriendshipsFeedRequest followersRequest = new FriendshipsFeedRequest(client.getPk(), FriendshipsFeedRequest.FriendshipsFeeds.FOLLOWERS);
+        FriendshipsFeedResponse followersResponse = client.sendRequest(followersRequest).get();
 
-        assertEquals("ok", friendshipsFeedFollowersResponse.getStatus());
+        assertEquals("ok", followersResponse.getStatus());
     }
 }
