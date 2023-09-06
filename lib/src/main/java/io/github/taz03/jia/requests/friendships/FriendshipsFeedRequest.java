@@ -6,11 +6,24 @@ import io.github.taz03.jia.requests.InstagramGetRequest;
 import io.github.taz03.jia.responses.friendships.FriendshipsFeedResponse;
 
 /**
- * Represents an Instagram friendships feed request, used to get followers/followings list
+ * Represents an Instagram friendships feed request, used to get followers/followings list.
+ * <br><br>
+ * To scroll through the results, use the next_max_id received in response of the previous request.
+ * <br>
+ * Example:
+ * {@snippet :
+ * FriendshipsFeedRequest followingsRequest = new FriendshipsFeedRequest(pk, FriendshipsFeeds.FOLLOWING);
+ * FriendshipsFeedResponse followingsResponse = client.sendRequest(followingsRequest).get();
+ *
+ * if (followingResponse.getMaxId() != 0) {
+ *     followingsRequest = new FriendshipsFeedRequest(pk, FriendshipsFeeds.FOLLOWING, followingResponse.getMaxId());
+ *     followingsResponse = client.sendRequest(followingsRequest).get();
+ * }
+ * }
  */
 public final class FriendshipsFeedRequest extends InstagramGetRequest<FriendshipsFeedResponse> {
     /**
-     * Creates an Instagram friendships feed request
+     * Creates an Instagram friendships feed request.
      
      * @param pk     pk of the user to get friendships of
      * @param action action of {@link FriendshipsFeeds} to get followers or followings
@@ -20,7 +33,7 @@ public final class FriendshipsFeedRequest extends InstagramGetRequest<Friendship
     }
 
     /**
-     * Creates an Instagram friendships feed request with maxId
+     * Creates an Instagram friendships feed request.
 
      * @param pk     pk of the user to get friendships of
      * @param action action of {@link FriendshipsFeeds} to get followers or followings
@@ -31,11 +44,8 @@ public final class FriendshipsFeedRequest extends InstagramGetRequest<Friendship
             "max_id", maxId
         ));
     }
-
-    /**
-     * Used to form URL in {@link FriendshipsFeedRequest} constructor
-     */
-    public enum FriendshipsFeeds{
+    
+    public enum FriendshipsFeeds {
         FOLLOWERS, FOLLOWING
     }
 }
