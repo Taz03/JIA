@@ -14,7 +14,7 @@ public final class FriendshipsFeedRequest extends InstagramGetRequest<Friendship
      * @param action action of {@link FriendshipsFeeds} to get followers or followings
      */
     public FriendshipsFeedRequest(long pk, FriendshipsFeeds action) {
-        super(FriendshipsFeedResponse.class, String.format("/api/v1/friendships/%s/%s/", pk, action.name().toLowerCase()));
+        this(pk,  action, 0);
     }
 
     /**
