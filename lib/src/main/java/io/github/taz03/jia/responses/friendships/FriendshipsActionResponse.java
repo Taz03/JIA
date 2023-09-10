@@ -10,4 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FriendshipsActionResponse extends InstagramResponse {
    @JsonProperty("friendship_status")
     private Status friendshipStatus;
+
+    public Status getFriendshipStatus() {
+        return friendshipStatus;
+    }
 }
