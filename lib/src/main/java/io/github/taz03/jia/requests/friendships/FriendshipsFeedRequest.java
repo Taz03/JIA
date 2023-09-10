@@ -29,7 +29,7 @@ public final class FriendshipsFeedRequest extends InstagramGetRequest<Friendship
      * @param action action of {@link FriendshipsFeeds} to get followers or followings
      */
     public FriendshipsFeedRequest(long pk, FriendshipsFeeds action) {
-        this(pk,  action, 0);
+        this(pk,  action, "0");
     }
 
     /**
@@ -42,7 +42,7 @@ public final class FriendshipsFeedRequest extends InstagramGetRequest<Friendship
     public FriendshipsFeedRequest(long pk, FriendshipsFeeds action, String maxId) {
         super(FriendshipsFeedResponse.class, String.format("/api/v1/friendships/%d/%s/", pk, action.name().toLowerCase(), Map.of(
             "max_id", maxId
-        ));
+        )));
     }
     
     public enum FriendshipsFeeds {
