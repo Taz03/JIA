@@ -8,7 +8,7 @@ import io.github.taz03.jia.responses.friendships.FriendshipsFeedResponse;
 
 import org.junit.jupiter.api.Test;
 
-public class FriendshipsFeedTest {
+public final class FriendshipsFeedTest {
     @Test
     public void friendshipsFeedFollowingTest() throws Exception {
         FriendshipsFeedRequest followingsRequest = new FriendshipsFeedRequest(client.getPk(), FriendshipsFeedRequest.FriendshipsFeeds.FOLLOWING);
