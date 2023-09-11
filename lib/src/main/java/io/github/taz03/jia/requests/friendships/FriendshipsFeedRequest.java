@@ -25,22 +25,22 @@ public final class FriendshipsFeedRequest extends InstagramGetRequest<Friendship
     /**
      * Creates an Instagram friendships feed request.
      
-     * @param pk     pk of the user to get friendships of
-     * @param action action of {@link FriendshipsFeeds} to get followers or followings
+     * @param pk    pk of the user to get friendships of
+     * @param feed {@link FriendshipsFeeds} to get followers or followings
      */
-    public FriendshipsFeedRequest(long pk, FriendshipsFeeds action) {
-        this(pk, action, 0);
+    public FriendshipsFeedRequest(long pk, FriendshipsFeeds feed) {
+        this(pk, feed, 0);
     }
 
     /**
      * Creates an Instagram friendships feed request.
 
-     * @param pk     pk of the user to get friendships of
-     * @param action action of {@link FriendshipsFeeds} to get followers or followings
-     * @param maxId  beginning number of the followers/followings list
+     * @param pk    pk of the user to get friendships of
+     * @param feed  {@link FriendshipsFeeds} to get followers or followings
+     * @param maxId beginning number of the followers/followings list
      */
-    public FriendshipsFeedRequest(long pk, FriendshipsFeeds action, int maxId) {
-        super(FriendshipsFeedResponse.class, String.format("/api/v1/friendships/%d/%s/", pk, action.name().toLowerCase()), Map.of(
+    public FriendshipsFeedRequest(long pk, FriendshipsFeeds feed, int maxId) {
+        super(FriendshipsFeedResponse.class, String.format("/api/v1/friendships/%d/%s/", pk, feed.name().toLowerCase()), Map.of(
             "max_id", maxId
         ));
     }
