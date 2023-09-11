@@ -13,13 +13,13 @@ public class FriendshipsFeedResponse extends InstagramResponse {
     @JsonProperty("users")
     private List<User> users;
     @JsonProperty("next_max_id")
-    private String nextMaxId;
+    private int nextMaxId;
 
     public List<User> getUsers() {
         return users;
     }
 
-    public String getNextMaxId() {
+    public int getNextMaxId() {
         return nextMaxId;
     }
 }
