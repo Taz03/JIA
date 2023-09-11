@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.github.taz03.jia.requests.friendships.ShowRequest;
 import io.github.taz03.jia.responses.friendships.ShowResponse;
+
 import org.junit.jupiter.api.Test;
 
 public final class ShowTest {
