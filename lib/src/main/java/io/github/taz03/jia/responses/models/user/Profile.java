@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class Profile {
+public class Profile {
     @JsonProperty("username")
     private String username;
     @JsonProperty("full_name")

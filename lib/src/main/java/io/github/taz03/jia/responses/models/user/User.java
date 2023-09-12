@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class User {
+public class User {
     @JsonUnwrapped
     private Profile profile;
     @JsonProperty("is_business")

@@ -1,13 +1,13 @@
 package io.github.taz03.jia.responses.models.user;
 
-import io.github.taz03.jia.responses.models.friendship.Status;
+import io.github.taz03.jia.responses.models.friendships.Status;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class SearchProfile {
+public class SearchProfile {
     @JsonUnwrapped
     private Profile profile;
     @JsonProperty("friendship_status")

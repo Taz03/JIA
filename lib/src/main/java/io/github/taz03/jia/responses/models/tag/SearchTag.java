@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class SearchTag {
+public class SearchTag {
     @JsonProperty("formatted_media_count")
     private String formattedMediaCount;
     @JsonProperty("id")

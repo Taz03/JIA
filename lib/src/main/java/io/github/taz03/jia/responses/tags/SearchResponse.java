@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class SearchResponse extends InstagramResponse {
+public class SearchResponse extends InstagramResponse {
     @JsonProperty("has_more")
     private boolean hasMore;
     @JsonProperty("rank_token")
