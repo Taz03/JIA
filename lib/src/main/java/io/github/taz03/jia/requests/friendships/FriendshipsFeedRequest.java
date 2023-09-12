@@ -40,7 +40,7 @@ public final class FriendshipsFeedRequest extends InstagramGetRequest<Friendship
      * @param maxId beginning number of the followers/followings list
      */
     public FriendshipsFeedRequest(long pk, FriendshipsFeeds feed, int maxId) {
-        super(FriendshipsFeedResponse.class, String.format("/api/v1/friendships/%d/%s/", pk, feed.name().toLowerCase()), Map.of(
+        super(FriendshipsFeedResponse.class, "/api/v1/friendships/%d/%s/".formatted(pk, feed.name().toLowerCase()), Map.of(
             "max_id", maxId
         ));
     }
