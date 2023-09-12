@@ -13,6 +13,6 @@ public final class ShowRequest extends InstagramGetRequest<ShowResponse> {
      * @param pk pk of the user to show connection info for
      */
     public ShowRequest(long pk) {
-        super(ShowResponse.class, "/v1/friendships/show/%d/".formatted(pk));
+        super(ShowResponse.class, "/api/v1/friendships/show/%d/".formatted(pk));
     }
 }
