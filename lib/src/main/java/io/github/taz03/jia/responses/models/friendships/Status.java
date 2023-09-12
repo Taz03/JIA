@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Status {
+public final class Status {
     @JsonProperty("following")
     private boolean following;
     @JsonProperty("incoming_request")
@@ -46,11 +46,11 @@ public class Status {
     public String toString() {
         return "Status{" +
                 "following=" + following +
-                ", incomingRequest=" + hasIncomingRequest +
+                ", hasIncomingRequest=" + hasIncomingRequest +
                 ", isBestie=" + isBestie +
                 ", isPrivate=" + isPrivate +
                 ", isRestricted=" + isRestricted +
-                ", outgoingRequest=" + hasOutgoingRequest +
+                ", hasOutgoingRequest=" + hasOutgoingRequest +
                 '}';
     }
 }

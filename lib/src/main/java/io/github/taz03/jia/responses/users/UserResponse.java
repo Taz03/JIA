@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserResponse extends InstagramResponse {
+public final class UserResponse extends InstagramResponse {
     @JsonProperty("user")
     private User user;
 

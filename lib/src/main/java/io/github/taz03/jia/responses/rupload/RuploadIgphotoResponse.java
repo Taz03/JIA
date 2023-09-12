@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RuploadIgphotoResponse extends InstagramResponse {
+public final class RuploadIgphotoResponse extends InstagramResponse {
     @JsonProperty("upload_id")
     private String uploadId;
 

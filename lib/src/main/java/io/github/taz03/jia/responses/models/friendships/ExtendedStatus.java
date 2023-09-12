@@ -2,9 +2,12 @@ package io.github.taz03.jia.responses.models.friendships;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ExtendedStatus extends Status {
+public final class ExtendedStatus {
+    @JsonUnwrapped
+    private Status status;
     @JsonProperty("followed_by")
     private boolean followedBy;
     @JsonProperty("blocking")
@@ -17,6 +20,10 @@ public class ExtendedStatus extends Status {
     private boolean isSubscribed;
     @JsonProperty("is_eligible_to_subscribe")
     private boolean isSubscribable;
+
+    public Status getStatus() {
+        return status;
+    }
 
     public boolean isFollowedBy() {
         return followedBy;
@@ -40,5 +47,18 @@ public class ExtendedStatus extends Status {
 
     public boolean isSubscribable() {
         return isSubscribable;
+    }
+
+    @Override
+    public String toString() {
+        return "ExtendedStatus{" +
+                ", status=" + status +
+                ", followedBy=" + followedBy +
+                ", isBlocked=" + isBlocked +
+                ", isMuted=" + isMuted +
+                ", isFeedFavourite=" + isFeedFavourite +
+                ", isSubscribed=" + isSubscribed +
+                ", isSubscribable=" + isSubscribable +
+                '}';
     }
 }

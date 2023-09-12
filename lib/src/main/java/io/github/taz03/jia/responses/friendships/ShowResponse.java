@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ShowResponse extends InstagramResponse {
+public final class ShowResponse extends InstagramResponse {
     @JsonUnwrapped
     private ExtendedStatus extendedStatus;
     @JsonProperty("is_blocking_reel")
@@ -44,5 +44,17 @@ public class ShowResponse extends InstagramResponse {
 
     public boolean isMutingNotes() {
         return isMutingNotes;
+    }
+
+    @Override
+    public String toString() {
+        return "ShowResponse{" +
+                "extendedStatus=" + extendedStatus +
+                ", isBlockingReel=" + isBlockingReel +
+                ", isMutingReel=" + isMutingReel +
+                ", isSupervised=" + isSupervised +
+                ", isGuardian=" + isGuardian +
+                ", isMutingNotes=" + isMutingNotes +
+                '}';
     }
 }

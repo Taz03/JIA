@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SearchProfile {
+public final class SearchProfile {
     @JsonUnwrapped
     private Profile profile;
     @JsonProperty("friendship_status")
