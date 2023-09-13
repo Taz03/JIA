@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class FriendshipsFeedResponse extends InstagramResponse {
+public final class FriendshipsResponse extends InstagramResponse {
     @JsonProperty("users")
     private List<User> users;
     @JsonProperty("next_max_id")
@@ -25,7 +25,7 @@ public final class FriendshipsFeedResponse extends InstagramResponse {
 
     @Override
     public String toString() {
-        return "FriendshipsFeedResponse{" +
+        return "FriendshipsResponse{" +
                 "users=" + users +
                 ", nextMaxId=" + nextMaxId +
                 '}';
