@@ -25,7 +25,7 @@ public final class FriendshipsRequest extends InstagramGetRequest<FriendshipsRes
     /**
      * Creates an Instagram friendships feed request.
      *
-     * @param pk    pk of the user to get friendships of
+     * @param pk   pk of the user to get friendships of
      * @param feed {@link Friendships} to get followers or followings
      */
     public FriendshipsRequest(long pk, Friendships feed) {
