@@ -15,7 +15,7 @@ import io.github.taz03.jia.responses.friendships.FriendshipsResponse;
  * FriendshipsRequest followingsRequest = new FriendshipsRequest(pk, Friendships.FOLLOWING);
  * FriendshipsResponse followingsResponse = client.sendRequest(followingsRequest).get();
  *
- * if (followingResponse.getMaxId() != 0) {
+ * if (followingResponse.getNextMaxId() != 0) {
  *     followingsRequest = new FriendshipsRequest(pk, Friendships.FOLLOWING, followingResponse.getMaxId());
  *     followingsResponse = client.sendRequest(followingsRequest).get();
  * }
