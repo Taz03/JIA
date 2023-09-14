@@ -29,7 +29,7 @@ public final class FriendshipsRequest extends InstagramGetRequest<FriendshipsRes
      * @param feed {@link Friendships} to get followers or followings
      */
     public FriendshipsRequest(long pk, Friendships feed) {
-        this(pk, feed, 0);
+        this(pk, feed, "");
     }
 
     /**
@@ -37,9 +37,9 @@ public final class FriendshipsRequest extends InstagramGetRequest<FriendshipsRes
      *
      * @param pk    pk of the user to get friendships of
      * @param feed  {@link Friendships} to get followers or followings
-     * @param maxId beginning number of the followers/followings list
+     * @param maxId nextMaxId received in the previous response, to fetch after that point
      */
-    public FriendshipsRequest(long pk, Friendships feed, int maxId) {
+    public FriendshipsRequest(long pk, Friendships feed, String maxId) {
         super(FriendshipsResponse.class, "/api/v1/friendships/%d/%s/".formatted(pk, feed.name().toLowerCase()), Map.of(
             "max_id", maxId
         ));
