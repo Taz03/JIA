@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public final class FriendshipsResponse extends InstagramResponse {
     @JsonProperty("users")
     private List<User> users;
-    @JsonProperty("page_size")
-    private int pageSize;
+    @JsonProperty("big_list")
+    private boolean hasMore;
     @JsonProperty("next_max_id")
     private String nextMaxId;
 
@@ -21,8 +21,8 @@ public final class FriendshipsResponse extends InstagramResponse {
         return users;
     }
 
-    public int getPageSize() {
-        return pageSize;
+    public boolean hasMore() {
+        return hasMore;
     }
 
     public String getNextMaxId() {
@@ -33,7 +33,7 @@ public final class FriendshipsResponse extends InstagramResponse {
     public String toString() {
         return "FriendshipsResponse{" +
                 "users=" + users +
-                ", pageSize=" + pageSize +
+                ", hasMore=" + hasMore +
                 ", nextMaxId='" + nextMaxId + '\'' +
                 '}';
     }
