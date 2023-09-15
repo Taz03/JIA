@@ -15,7 +15,7 @@ public class FriendshipsActionRequest extends InstagramPostRequest<FriendshipsAc
      * @param action action of {@link FriendshipsAction} to follow or unfollow
      */
     public FriendshipsActionRequest(long pk, FriendshipsAction action){
-        super(FriendshipsActionResponse.class, String.format("/api/v1/friendships/%s/%s/", action.name().toLowerCase(), pk));
+        super(FriendshipsActionResponse.class, "/api/v1/friendships/%s/%d/".formatted(action.name().toLowerCase(), pk));
     }
 
     /**
