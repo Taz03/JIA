@@ -1,6 +1,6 @@
 package io.github.taz03.jia.responses.models.user;
 
-import io.github.taz03.jia.responses.models.friendship.Status;
+import io.github.taz03.jia.responses.models.friendships.Status;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
