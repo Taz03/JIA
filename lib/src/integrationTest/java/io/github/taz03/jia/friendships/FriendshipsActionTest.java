@@ -8,10 +8,11 @@ import io.github.taz03.jia.responses.friendships.FriendshipsActionResponse;
 import org.junit.jupiter.api.Test;
 
 public class FriendshipsActionTest {
-    private final long pk = 25025320;
+    // pk of official instagram account - https://www.instagram.com/instagram/
+    private static final long INSTAGRAM_PK = 25025320;
     @Test
     public void followUsernameTest() throws Exception{
-        FriendshipsActionRequest friendshipsActionRequest = new FriendshipsActionRequest(pk, FriendshipsActionRequest.FriendshipsAction.CREATE);
+        FriendshipsActionRequest friendshipsActionRequest = new FriendshipsActionRequest(INSTAGRAM_PK, FriendshipsActionRequest.FriendshipsAction.CREATE);
         FriendshipsActionResponse friendshipsActionResponse = TestProxy.client.sendRequest(friendshipsActionRequest).get();
 
         assertEquals("ok", friendshipsActionResponse.getStatus());
@@ -19,7 +20,7 @@ public class FriendshipsActionTest {
 
     @Test
     public void unfollowPkTest() throws Exception{
-        FriendshipsActionRequest friendshipsActionRequest = new FriendshipsActionRequest(pk, FriendshipsActionRequest.FriendshipsAction.DESTROY);
+        FriendshipsActionRequest friendshipsActionRequest = new FriendshipsActionRequest(INSTAGRAM_PK, FriendshipsActionRequest.FriendshipsAction.DESTROY);
         FriendshipsActionResponse response = TestProxy.client.sendRequest(friendshipsActionRequest).get();
 
         assertEquals("ok", response.getStatus());
