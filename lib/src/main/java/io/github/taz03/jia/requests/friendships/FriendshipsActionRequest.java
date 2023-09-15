@@ -18,6 +18,10 @@ public class FriendshipsActionRequest extends InstagramPostRequest<FriendshipsAc
         super(FriendshipsActionResponse.class, String.format("/api/v1/friendships/%s/%s/", action.name().toLowerCase(), pk));
     }
 
+    /**
+     * CREATE = follow
+     * DESTROY = unfollow
+     */
     public enum FriendshipsAction{
         CREATE, DESTROY
     }
