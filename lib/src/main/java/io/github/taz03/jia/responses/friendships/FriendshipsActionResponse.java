@@ -17,6 +17,8 @@ public class FriendshipsActionResponse extends InstagramResponse {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "FriendshipsActionResponse{" +
+                "friendshipStatus=" + friendshipStatus +
+                '}';
     }
 }
