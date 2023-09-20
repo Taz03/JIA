@@ -4,17 +4,16 @@ import io.github.taz03.jia.requests.InstagramPostRequest;
 import io.github.taz03.jia.responses.friendships.FriendshipsActionResponse;
 
 /**
- * Represents an Instagram friendships action request, used to follow/unfollow users
+ * Represents an Instagram friendships action request, used to follow/unfollow others.
  */
 public class FriendshipsActionRequest extends InstagramPostRequest<FriendshipsActionResponse> {
-
     /**
-     * Creates an Instagram action request
-
-     * @param pk user's pk to apply the action on him
-     * @param action action of {@link FriendshipsAction} to follow or unfollow
+     * Creates an Instagram friendships action request.
+     *
+     * @param pk     target user's pk
+     * @param action action of {@link Action} to follow or unfollow
      */
-    public FriendshipsActionRequest(long pk, FriendshipsAction action){
+    public FriendshipsActionRequest(long pk, Action action){
         super(FriendshipsActionResponse.class, "/api/v1/friendships/%s/%d/".formatted(action.name().toLowerCase(), pk));
     }
 
@@ -22,7 +21,7 @@ public class FriendshipsActionRequest extends InstagramPostRequest<FriendshipsAc
      * CREATE = follow
      * DESTROY = unfollow
      */
-    public enum FriendshipsAction{
+    public enum Action {
         CREATE, DESTROY
     }
 }

@@ -1,10 +1,10 @@
 package io.github.taz03.jia.responses.friendships;
 
 import io.github.taz03.jia.responses.InstagramResponse;
+import io.github.taz03.jia.responses.models.friendships.ExtendedStatus;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.taz03.jia.responses.models.friendships.ExtendedStatus;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FriendshipsActionResponse extends InstagramResponse {
