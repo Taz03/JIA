@@ -1,6 +1,10 @@
+# Summary
 Thanks for taking the time to contribute to this project.
+Index:-
+- [How to track and add new Instagram requests](#how-to-track-and-add-new-instagram-requests)
+- [Code Guidelines](#code-guidelines)
 
-# How to track and add new Instagram requests
+## How to track and add new Instagram requests
 First, you must set up Instagram SSL pinning bypass to see the requests sent by the Instagram mobile app, [guide here](https://github.com/Eltion/Instagram-SSL-Pinning-Bypass).
 
 ![image](https://github.com/Taz03/JIA/assets/73871477/62e57422-8912-48ea-9b0a-7272c165a41e)
@@ -28,12 +32,12 @@ public final class CurrentUserRequest extends InstagramGetRequest<UserResponse> 
 ```
 We also have to add integration test for every new added request.
 
-# Code Guidelines
+## Code Guidelines
 
-## Formatting
+#### Formatting
 Follow [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html), see other bits of the code base, and write consistent code.
 
-### Import Order
+#### Import Order
 All the static imports should be at the top without any new lines between them in this order:-
 - java
 - javax
@@ -77,7 +81,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 ```
 
-### Docs
+#### Docs
 ```java
     /**
      * Description of the method.
@@ -88,7 +92,7 @@ import org.slf4j.Logger;
      */
 ```
 
-### Curly Braces
+#### Curly Braces
 If the logic is in single don't use curly braces.
 ```java
 ❌ Wrong
