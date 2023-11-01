@@ -7,8 +7,7 @@ plugins {
 group = 'io.github.taz03'
 version = '0.2-SNAPSHOT'
 
-sourceCompatibility = JavaVersion.VERSION_19
-targetCompatibility = JavaVersion.VERSION_19
+sourceCompatibility = JavaVersion.VERSION_21
 
 sourceSets {
     integrationTest {
@@ -49,19 +48,6 @@ tasks.register('integrationTest', Test) {
     systemProperty 'verificationCode', System.getProperty('verificationCode')
 
     useJUnitPlatform()
-}
-
-tasks.withType(JavaCompile).each {
-    it.options.compilerArgs.add('--enable-preview')
-}
-
-tasks.withType(Test).configureEach {
-    jvmArgs += "--enable-preview"
-
-    testLogging {
-        exceptionFormat = "full"
-        showStandardStreams = true
-    }
 }
 
 publishing {
