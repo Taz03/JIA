@@ -7,7 +7,9 @@ plugins {
 group = 'io.github.taz03'
 version = '0.2-SNAPSHOT'
 
-sourceCompatibility = JavaVersion.VERSION_21
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+}
 
 sourceSets {
     integrationTest {
