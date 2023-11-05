@@ -1,18 +1,29 @@
 package io.github.taz03.jia.accounts;
 
-import static io.github.taz03.jia.TestProxy.client;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import io.github.taz03.jia.InstagramClient;
+import io.github.taz03.jia.TestConfiguration;
 import io.github.taz03.jia.requests.accounts.SetGenderRequest;
 import io.github.taz03.jia.requests.accounts.SetGenderRequest.Gender;
 import io.github.taz03.jia.responses.InstagramResponse;
 
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = TestConfiguration.class)
 public final class SetGenderTest {
+    @Autowired
+    private InstagramClient client;
+
     @ParameterizedTest
     @MethodSource("testGenders")
     public void setGenderTest(Object gender) throws Exception {
