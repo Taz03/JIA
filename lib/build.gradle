@@ -1,11 +1,11 @@
 plugins {
-    id 'java-library'
-    id 'maven-publish'
-    id 'signing'
+    id "java-library"
+    id "maven-publish"
+    id "signing"
 }
 
-group = 'io.github.taz03'
-version = '0.2-SNAPSHOT'
+group = "io.github.taz03"
+version = "0.2-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -26,65 +26,73 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    jacksonVersion = "2.14.2"
+    slf4jVersion = "2.0.6"
+    springVersion = "6.0.13"
+}
+
 dependencies {
-    api 'com.fasterxml.jackson.core:jackson-core:2.14.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
-    implementation 'org.slf4j:slf4j-api:2.0.6'
-    implementation 'org.slf4j:slf4j-simple:2.0.6'
+    api "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+    implementation "org.slf4j:slf4j-api:$slf4jVersion"
+    implementation "org.slf4j:slf4j-simple:$slf4jVersion"
 
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.0"
 
-    integrationTestImplementation 'org.springframework:spring-context:6.0.13'
-    integrationTestImplementation 'org.springframework:spring-test:6.0.13'
+    integrationTestImplementation "org.springframework:spring-context:$springVersion"
+    integrationTestImplementation "org.springframework:spring-test:$springVersion"
 }
 
-tasks.named('test') {
+tasks.withType(Test).configureEach {
     useJUnitPlatform()
+
+    testLogging {
+        exceptionFormat = "full"
+    }
 }
 
-tasks.register('integrationTest', Test) {
-    description = 'Runs integration tests.'
-    group = 'verification'
+tasks.register("integrationTest", Test) {
+    description = "Runs integration tests."
+    group = "verification"
 
     testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
 
-    systemProperty 'verificationCode', System.getProperty('verificationCode')
-
-    useJUnitPlatform()
+    systemProperty "verificationCode", System.getProperty("verificationCode")
 }
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = 'jia'
+            artifactId = "jia"
             from components.java
 
             pom {
-                name = 'JIA'
-                description = 'Java API Wrapper for Instagram Private API'
-                url = 'https://github.com/Taz03/JIA'
+                name = "JIA"
+                description = "Java API Wrapper for Instagram Private API"
+                url = "https://github.com/Taz03/JIA"
 
                 licenses {
                     license {
-                        name = 'GNU General Public License v3.0'
-                        url = 'https://www.gnu.org/licenses/gpl-3.0.txt'
+                        name = "GNU General Public License v3.0"
+                        url = "https://www.gnu.org/licenses/gpl-3.0.txt"
                     }
                 }
 
                 developers {
                     developer {
-                        id = 'Taz03'
-                        name = 'Tanish Azad'
-                        email = 'tanishazad03@gmail.com'
+                        id = "Taz03"
+                        name = "Tanish Azad"
+                        email = "tanishazad03@gmail.com"
                     }
                 }
 
                 scm {
-                    connection = 'scm:git:https://github.com/Taz03/JIA.git'
-                    developerConnection = 'scm:git:https://github.com/Taz03/JIA.git'
-                    url = 'https://github.com/Taz03/JIA'
+                    connection = "scm:git:https://github.com/Taz03/JIA.git"
+                    developerConnection = "scm:git:https://github.com/Taz03/JIA.git"
+                    url = "https://github.com/Taz03/JIA"
                 }
             }
         }
@@ -92,9 +100,9 @@ publishing {
 
     repositories {
         maven {
-            def releasesRepoUrl = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
-            def snapshotsRepoUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
 
             credentials {
                 username = project.findProperty("ossrhUsername")
@@ -109,5 +117,5 @@ signing {
 }
 
 javadoc {
-    options.addBooleanOption('html5', true)
+    options.addBooleanOption("html5", true)
 }
