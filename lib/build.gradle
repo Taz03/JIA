@@ -34,6 +34,9 @@ dependencies {
     implementation 'org.slf4j:slf4j-simple:2.0.6'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+
+    integrationTestImplementation 'org.springframework:spring-context:6.0.13'
+    integrationTestImplementation 'org.springframework:spring-test:6.0.13'
 }
 
 tasks.named('test') {
