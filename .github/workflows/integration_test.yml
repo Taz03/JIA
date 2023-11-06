@@ -27,7 +27,7 @@ jobs:
         echo '"phone_number":${{ vars.PHONE_NUMBER || '' }},\n' >> $USER_CONFIG
         echo '"email":${{ vars.EMAIL || '' }},\n' >> $USER_CONFIG
         echo '}\n' >> $USER_CONFIG
-        echo $USER_CONFIG
+        cat $USER_CONFIG
     - name: Set up JDK 21
       uses: actions/setup-java@v3
       with:
