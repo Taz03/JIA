@@ -1,0 +1,39 @@
+name: Integration test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+env:
+  USER_CONFIG: lib/src/integrationTest/resources/user.json
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Creating user.json
+      run: |
+        touch $USER_CONFIG
+        echo '{\n' >> $USER_CONFIG
+        echo '"username":${{ vars.USERNAME }},\n' >> $USER_CONFIG
+        echo '"password":${{ vars.PASSWORD }},\n' >> $USER_CONFIG
+        echo '"phone_number":${{ vars.PHONE_NUMBER || "" }},\n' >> $USER_CONFIG
+        echo '"email":${{ vars.EMAIL || "" }},\n' >> $USER_CONFIG
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'oracle'
+    - name: Run Integration test
+      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+      with:
+        arguments: integrationTest
+    - name: Remove user.json
+      run: rm -f $USER_CONFIG
