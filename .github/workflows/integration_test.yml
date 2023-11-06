@@ -22,10 +22,10 @@ jobs:
       run: |
         touch $USER_CONFIG
         echo '{' >> $USER_CONFIG
-        echo '  "username":${{ vars.USERNAME }},' >> $USER_CONFIG
-        echo '  "password":${{ vars.PASSWORD }},' >> $USER_CONFIG
-        echo '  "phone_number":${{ vars.PHONE_NUMBER || '' }},' >> $USER_CONFIG
-        echo '  "email":${{ vars.EMAIL || '' }},' >> $USER_CONFIG
+        echo '  "username": "${{ vars.USERNAME }}",' >> $USER_CONFIG
+        echo '  "password": "${{ vars.PASSWORD }}",' >> $USER_CONFIG
+        echo '  "phone_number": "${{ vars.PHONE_NUMBER || '' }}",' >> $USER_CONFIG
+        echo '  "email": "${{ vars.EMAIL || '' }}",' >> $USER_CONFIG
         echo '}' >> $USER_CONFIG
         cat $USER_CONFIG
     - name: Set up JDK 21
