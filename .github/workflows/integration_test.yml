@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions:
-  contents: read
-
 env:
   USER_CONFIG: lib/src/integrationTest/resources/user.json
 
@@ -36,6 +33,4 @@ jobs:
     - name: Run Integration test
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
-        arguments: integrationTest
-    - name: Remove user.json
-      run: rm -f $USER_CONFIG
+        arguments: clean integrationTest
