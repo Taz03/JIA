@@ -1,7 +1,10 @@
 name: Integration test
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 env:
   USER_CONFIG: lib/src/integrationTest/resources/user.json
