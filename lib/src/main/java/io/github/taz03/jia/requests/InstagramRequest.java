@@ -1,8 +1,8 @@
 package io.github.taz03.jia.requests;
 
 import java.net.http.HttpRequest;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import io.github.taz03.jia.InstagramClient;
 import io.github.taz03.jia.responses.InstagramResponse;
@@ -41,7 +41,7 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
         this.responseType = responseType;
         this.url += path;
 
-        if (queries != null && queries.size() > 0)
+        if (queries != null && !queries.isEmpty())
             url += "?" + UrlUtils.makeBody(queries);
     }
 
@@ -73,7 +73,10 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
      * @return     Parsed response class
      */
     public T parseResponse(String json) throws JsonProcessingException {
-        return mapper.readValue(json, responseType);
+        T response = mapper.readValue(json, responseType);
+        response.setJson(json);
+
+        return response;
     }
 
     protected Map<String, Object> getHeaders(InstagramClient client) {
@@ -86,7 +89,7 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
 
     protected static String[] makeHeaderArray(Map<String, Object> headers) {
         return headers.keySet().stream()
-            .flatMap(key -> List.of(key, headers.get(key).toString()).stream())
+            .flatMap(key -> Stream.of(key, headers.get(key).toString()))
             .toList()
             .toArray(new String[0]);
     }

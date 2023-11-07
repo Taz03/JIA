@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InstagramResponse {
+    private String json;
+
     @JsonProperty("status")
     private String status;
     @JsonProperty("message")
@@ -19,6 +21,17 @@ public class InstagramResponse {
     private String errorType;
     @JsonProperty("checkpoint_url")
     private String checkpointUrl;
+
+    public void setJson(String json) {
+        this.json = json;
+    }
+
+    /**
+     * @return The raw json response
+     */
+    public String getJson() {
+        return json;
+    }
 
     public String getStatus() {
         return status;
