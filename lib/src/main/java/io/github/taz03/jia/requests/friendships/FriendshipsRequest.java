@@ -9,9 +9,7 @@ import io.github.taz03.jia.responses.friendships.FriendshipsResponse;
  * Represents an Instagram friendships feed request, used to get followers/followings list.
  * <br><br>
  * To scroll through the results, use the next_max_id received in response of the previous request.
- * <br>
- * Example:
- * {@snippet :
+ * {@snippet lang=java :
  * FriendshipsRequest followingsRequest = new FriendshipsRequest(pk, Friendships.FOLLOWING);
  * FriendshipsResponse followingsResponse = client.sendRequest(followingsRequest).get();
  *

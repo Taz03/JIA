@@ -6,7 +6,7 @@ import io.github.taz03.jia.requests.InstagramPostRequest;
 import io.github.taz03.jia.responses.accounts.LoginResponse;
 
 /**
- * Represents an Instagram login request, used to login into an users account.
+ * Represents an Instagram login request, used to login into a users account.
  */
 public final class LoginRequest extends InstagramPostRequest<LoginResponse> {
 	/**

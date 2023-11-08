@@ -7,11 +7,9 @@ import io.github.taz03.jia.responses.users.UserResponse;
 
 /**
  * Represents an Instagram change profile picture request, used to change profile.
- *
+ * <p>
  * To get the upload id, you will have to first upload a photo using {@link io.github.taz03.jia.requests.rupload.RuploadIgphotoRequest}
- * <br>
- * Example:
- * {@snippet :
+ * {@snippet lang=java :
  * RuploadIgphotoRequest photoUploadRequest = new RuploadIgphotoRequest(Path.of("/path/to/photo.png"));
  * RuploadIgphotoResponse photoUploadResponse = client.sendRequest(photoUploadRequest).get();
  *

@@ -9,9 +9,7 @@ import io.github.taz03.jia.responses.users.SearchResponse;
  * Represents an Instagram users search request, used to search for users.
  * <br><br>
  * To get scroll through the results, use the rank_token got in response of previous page.
- * <br>
- * Example:
- * {@snippet :
+ * {@snippet lang=java :
  * String query = "query";
  * SearchRequest firstSearch = new AccountSerpRequest(query);
  * SearchResponse firstPage = client.sendRequest(firstSearch).get();
