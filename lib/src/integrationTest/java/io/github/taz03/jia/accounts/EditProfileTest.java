@@ -26,7 +26,11 @@ public final class EditProfileTest {
 
     @Test
     public void editProfileTest() throws Exception {
-        EditProfileRequest request = new EditProfileRequest(user.username(), "JIA", "JIA test bio [edit profile request]", "", false, user.phoneNumber(), user.email());
+        EditProfileRequest request = new EditProfileRequest.EditProfileRequestBuilder()
+            .setPhoneNumber(user.phoneNumber())
+            .setEmail(user.email())
+            .setBiography("JIA test bio [edit profile request]")
+        EditProfileRequest request = new EditProfileRequest(user.username(), "JIA", , "", false, user.phoneNumber(), user.email());
         UserResponse response = client.sendRequest(request).get();
 
         assertEquals("ok", response.getStatus());

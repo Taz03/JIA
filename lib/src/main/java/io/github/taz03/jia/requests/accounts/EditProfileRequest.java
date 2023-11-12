@@ -50,32 +50,39 @@ public final class EditProfileRequest extends InstagramPostRequest<UserResponse>
 		private String phoneNumber;
 		private String email;
 
-		public void setUsername(String username) {
+		public EditProfileRequestBuilder setUsername(String username) {
 			this.username = username;
+			return this;
 		}
 
-		public void setName(String name) {
+		public EditProfileRequestBuilder setName(String name) {
 			this.name = name;
+			return this;
 		}
 
-		public void setBiography(String biography) {
+		public EditProfileRequestBuilder setBiography(String biography) {
 			this.biography = biography;
+			return this;
 		}
 
-		public void setExternalUrl(String externalUrl) {
+		public EditProfileRequestBuilder setExternalUrl(String externalUrl) {
 			this.externalUrl = externalUrl;
+			return this;
 		}
 
-		public void setShowFbLinkOnProfile(Boolean showFbLinkOnProfile) {
+		public EditProfileRequestBuilder setShowFbLinkOnProfile(Boolean showFbLinkOnProfile) {
 			this.showFbLinkOnProfile = showFbLinkOnProfile;
+			return this;
 		}
 
-		public void setPhoneNumber(String phoneNumber) {
+		public EditProfileRequestBuilder setPhoneNumber(String phoneNumber) {
 			this.phoneNumber = phoneNumber;
+			return this;
 		}
 
-		public void setEmail(String email) {
+		public EditProfileRequestBuilder setEmail(String email) {
 			this.email = email;
+			return this;
 		}
 
 		public EditProfileRequest build() {
