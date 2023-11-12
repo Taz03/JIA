@@ -30,7 +30,8 @@ public final class EditProfileTest {
             .setPhoneNumber(user.phoneNumber())
             .setEmail(user.email())
             .setBiography("JIA test bio [edit profile request]")
-        EditProfileRequest request = new EditProfileRequest(user.username(), "JIA", , "", false, user.phoneNumber(), user.email());
+            .build();
+
         UserResponse response = client.sendRequest(request).get();
 
         assertEquals("ok", response.getStatus());
