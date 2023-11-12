@@ -5,6 +5,8 @@ import io.github.taz03.jia.responses.friendships.ShowResponse;
 
 /**
  * Represents an Instagram request, used to show your connection info with others.
+ *
+ * @see io.github.taz03.jia.requests.friendships.ShowManyRequest
  */
 public final class ShowRequest extends InstagramGetRequest<ShowResponse> {
     /**
