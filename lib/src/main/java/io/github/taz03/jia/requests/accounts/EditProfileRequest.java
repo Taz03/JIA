@@ -14,8 +14,6 @@ public final class EditProfileRequest extends InstagramPostRequest<UserResponse>
      * Creates an Instagram edit profile request.
 	 * <br>
 	 * At least one connected contact is necessary to edit profile data.
-	 * <br>
-	 * Pass `null` to optional fields.
      *
 	 * @param username    		  New username to set
 	 * @param name                New display name to set
