@@ -40,6 +40,7 @@ dependencies {
     implementation "org.slf4j:slf4j-simple:$slf4jVersion"
 
     testImplementation "org.junit.jupiter:junit-jupiter:5.10.1"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 
     integrationTestImplementation "org.springframework:spring-context:$springVersion"
     integrationTestImplementation "org.springframework:spring-test:$springVersion"
