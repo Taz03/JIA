@@ -2,9 +2,11 @@ package io.github.taz03.jia.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InstagramResponse {
+    @JsonRawValue
     private String json;
 
     @JsonProperty("status")
@@ -22,12 +24,8 @@ public class InstagramResponse {
     @JsonProperty("checkpoint_url")
     private String checkpointUrl;
 
-    public void setJson(String json) {
-        this.json = json;
-    }
-
     /**
-     * @return The raw json response
+     * @return The raw json response from Instagram
      */
     public String getJson() {
         return json;
