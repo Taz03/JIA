@@ -73,10 +73,7 @@ public abstract class InstagramRequest<T extends InstagramResponse> {
      * @return     Parsed response class
      */
     public T parseResponse(String json) throws JsonProcessingException {
-        T response = mapper.readValue(json, responseType);
-        response.setJson(json);
-
-        return response;
+        return mapper.readValue(json, responseType);
     }
 
     protected Map<String, Object> getHeaders(InstagramClient client) {
