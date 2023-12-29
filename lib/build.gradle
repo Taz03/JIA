@@ -28,7 +28,7 @@ repositories {
 
 ext {
     jacksonVersion = "2.16.1"
-    slf4jVersion = "2.0.9"
+    slf4jVersion = "2.0.10"
     springVersion = "6.1.2"
 }
 
